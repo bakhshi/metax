@@ -221,10 +221,10 @@ void leviathan::metax_web_api::configuration_handler::
 handle_set_metax_info(Poco::Net::HTTPServerRequest& req,
                 std::promise<web_api_adapter::ims_response>& pr)
 {
-        if (! req.clientAddress().host().isLoopback()) {
-                throw Poco::Exception("set_metax_info request only allowed from"
-                                " localhost machine.");
-        }
+        //if (! req.clientAddress().host().isLoopback()) {
+        //        throw Poco::Exception("set_metax_info request only allowed from"
+        //                        " localhost machine.");
+        //}
         Poco::Net::HTMLForm f(req, req.stream());
         if (f.empty() || ! f.has("metax_user_uuid")) {
                 throw Poco::Exception("only metax_user_uuid parameter is "
@@ -244,10 +244,10 @@ void leviathan::metax_web_api::configuration_handler::
 handle_get_user_keys_request(Poco::Net::HTTPServerRequest& req,
                 std::promise<web_api_adapter::ims_response>& pr)
 {
-        if (! req.clientAddress().host().isLoopback()) {
-                throw Poco::Exception("get_user_keys request only allowed from"
-                                " localhost machine.");
-        }
+        //if (! req.clientAddress().host().isLoopback()) {
+        //        throw Poco::Exception("get_user_keys request only allowed from"
+        //                        " localhost machine.");
+        //}
         web_api_adapter* ims = web_api_adapter::get_instance();
         poco_assert(nullptr != ims);
         ims->handle_get_user_keys_request(&pr);
@@ -257,10 +257,10 @@ void leviathan::metax_web_api::configuration_handler::
 handle_start_pairing(Poco::Net::HTTPServerRequest& req,
                 std::promise<web_api_adapter::ims_response>& pr)
 {
-        if (! req.clientAddress().host().isLoopback()) {
-                throw Poco::Exception("start_pairing request only allowed from"
-                                " localhost machine.");
-        }
+        //if (! req.clientAddress().host().isLoopback()) {
+        //        throw Poco::Exception("start_pairing request only allowed from"
+        //                        " localhost machine.");
+        //}
         Poco::Net::HTMLForm f(req, req.stream());
         if (f.empty() || ! f.has("timeout")) {
                 throw Poco::Exception("only timeout parameter is supported now");
@@ -279,10 +279,10 @@ void leviathan::metax_web_api::configuration_handler::
 handle_request_keys(Poco::Net::HTTPServerRequest& req,
                 std::promise<web_api_adapter::ims_response>& pr)
 {
-        if (! req.clientAddress().host().isLoopback()) {
-                throw Poco::Exception("request_keys request only allowed from"
-                                " localhost machine.");
-        }
+        //if (! req.clientAddress().host().isLoopback()) {
+        //        throw Poco::Exception("request_keys request only allowed from"
+        //                        " localhost machine.");
+        //}
         Poco::Net::HTMLForm f(req, req.stream());
         if (f.empty() || ! f.has("ip") || ! f.has("code")) {
                 throw Poco::Exception("only ip and code parameters are supported now");
@@ -302,10 +302,10 @@ void leviathan::metax_web_api::configuration_handler::
 handle_regenerate_user_keys(Poco::Net::HTTPServerRequest& req,
                 std::promise<web_api_adapter::ims_response>& pr)
 {
-        if (! req.clientAddress().host().isLoopback()) {
-                throw Poco::Exception("regenerate keys request only allowed "
-                                "from localhost machine.");
-        }
+        //if (! req.clientAddress().host().isLoopback()) {
+        //        throw Poco::Exception("regenerate keys request only allowed "
+        //                        "from localhost machine.");
+        //}
         web_api_adapter* ims = web_api_adapter::get_instance();
         poco_assert(nullptr != ims);
         ims->handle_regenerate_user_keys(&pr);
