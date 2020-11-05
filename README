@@ -1,0 +1,151 @@
+This is the README file of Metax project developed by Leviathan CJSC.
+
+CONTENTS
+        1. AUTHOR
+        2. PREREQUISITES
+        3. DIRECTORY STRUCTURE
+        5. COMPILATION
+        5. USAGE
+        6. DOCUMENTATION
+
+1. AUTHOR
+Leviathan CJSC
+E-mail: info@leviathan.am
+Tel: +1-408-454-6172
+     +49-893-8157-1771
+     +374-10-248411
+Fax: +374-10-242919
+ggg.leviathan.am
+
+Project Maintainer
+	Leviathan CJSC
+	info@leviathan.am
+
+2. PREREQUISITES
+
+Metax prerequisites:
+The following tools and libraries should be installed before the
+compilation.
+
+Tools:
+g++
+make
+pkg-config
+Libraries:
+libssl-dev
+POCO 1.8.1
+
+To install prerequisites on Ubuntu Linux do the following steps:
+
+$ sudo apt-get install g++ make pkg-config libssl-dev
+
+Download 1.8.1 Complete edition Poco libraries from here:
+https://pocoproject.org/releases/poco-1.8.1/poco-1.8.1-all.tar.bz2
+
+Build Poco libraries:
+$ ./configure --no-tests --no-samples --omit=CppUnit,Data,MongoDB,PageCompiler,Redis,Zip
+By defualt shared libraries are produced. Specify  "--static --shared" options
+if you need to generate both static and shared libraries.
+$ make
+$ sudo make install
+
+Test prerequisites:
+The following tools should be installed before running the tests.
+
+Tools:
+sshpass
+nodejs
+npm
+jq
+curl (at least 7.52.0)
+bc
+
+To install test prerequisites on Ubuntu Linux do the following command:
+
+$ sudo apt-get install sshpass nodejs npm jq bc
+
+
+3. DIRECTORY STRUCTURE
+
+src/            - the source files of the project
+src/doc/        - the documentation of the project.
+                  Please refer to "DOCUMENTATION" section for more details
+makefile        - top level makefile to build / run the project
+Doxyfile        - doxygen configuration for the documentation of the project
+LICENSE         - the file granting rights and imposing restrictions on the
+                  use of the software
+LGPL.txt        - GNU Lesser General Public License under the terms of which
+                  the user can redistribute and/or modify the project
+GPL.txt         - GNU General Public License. Required as the LGPL is a set of
+		  additional permissions on top of the GPL
+ChangeLog       - the log of changes made to the project including such records
+                  as bug fixes, new features, etc.
+4. COMPILATION
+$ make setup [build_type=<build_type> link_type:=<link_type>]
+where:
+        <build_type> debug - build with debug flags enabled
+                     release - build with optimization flags enabled
+
+        <link_type> dynamic - build shared libraries and link executables
+                              dynamically
+                    static  - build static libraries libs and link executables
+                              statically
+defaults are debug and dynamic
+
+$ make
+libraries will be placed in lib directory.
+executables will be placed in bin directory.
+
+------------------------------------------------------------------------------
+To cross compile for SH4 target for Arris STBs run:
+$ make setup target=sh4
+Note, the cross compile toolchain and sdk must be installed in
+/usr/local/motorola directory
+building with sh4 target is tested with kreatv-kit-ossk_4.6_to_4.9_st40 sdk
+
+------------------------------------------------------------------------------
+Usage of GCOV/LCOV
+Install GCOV and LCOV:
+e.g. $ sudo apt-get install gcov lcov
+
+To use a code coverage tool run:
+$ make setup use_gcov=yes
+$ make
+$ make clean_test
+$ make coverage projects="metax platform  metax_web_api"
+To see the output of test coverage make a symbolic link with the command:
+ln -s $PWD/tests_coverage/ /var/www/metax_coverage
+Open via browser:
+http://localhost/metax_coverage/overall/
+
+------------------------------------------------------------------------------
+Usage of valgrind
+Install valgrind with the command:
+$ sudo apt-get install valgrind
+Run tests with the following command:
+make test use_valgrind=yes
+
+------------------------------------------------------------------------------
+Acceptance tests run instructions
+
+Run all acceptance tests with the command:
+$make test
+
+Run a single test-case of appropriate test-suite with the following command:
+
+$make test test_type=$test_suite sub_tests_results=${test_suite}_results/$test/$result_file
+e.g.
+$make test test_type=acceptance_tests sub_tests_results=acceptance_tests_results/<acceptance_test_name>/result.txt
+
+-------------------------------------------------------------------------------
+5. USAGE
+$ ./bin/metax_web_api [-f <xml_config_file>]
+
+6. DOCUMENTATION
+"make docs" command generates doxygen documentation.
+doxygen tool is prerequisite for "make docs" command
+
+The source code of the documentation is located in the directory src/doc.
+
+// vim:et:tabstop=8:shiftwidth=8:smartindent:textwidth=76:
+

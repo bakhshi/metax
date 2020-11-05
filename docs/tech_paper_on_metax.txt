@@ -1,0 +1,295 @@
+
+REDEFINE INTERCONNECT: The world is changed since the invention of the WWW
+	
+	THE WEB 2.0
+
+Internet (TCP/IP, HTTP(S), IMAP/POP3/SMTP(S), and big zoo of other protocols)
+has been designed in the age of friendly university-to-university connections
+for sharing scientific articles. The "Father of the WWW" Sir Tim Berners-Lee
+did not expect HTTP/HTML be used beyond hyperlinking scientific articles
+referencing each other from various places in the text. He certainly did not
+expect it to grow into what today is known as the Web 2.0 or the Social Web,
+where the Web pages are "active", i.e. the content is created not by the
+sys-admin and publishers, but by the visitors of the pages/sites.
+
+Essentially the Web turned into a big computer, where web sites are Apps,
+allowing users to log-in to them, use them to generate, process and manage
+information, as it used to be the case in a personal computer SW. The one big
+cloud computer for all, to run all applications of all users. 
+
+	THE BIG BROTHER
+
+One obvious problem of this design is related with mass amount of information
+being accessible to one corporation: not democratically elected government but
+a private corporation. Augmented with AI based natural language processing,
+image audio and video processing, such cloud service becomes The Great Eye that
+watches everybody and nothing can escape from its sight. It can be kind ruler
+that will provide benefits to everybody, it is and will remain power usurpator.
+Internet - once a device for freeing people - is one step away from becoming
+the global device for bringing them all and binding them in the darkness of
+corporate interests network manifested to regular consumer as flashing
+advertisement and plastic bag of goods, social securities, insurances, gamified
+user experience and buyer experience designed using the latest developments in
+big data processing, machine learning and neuromarketing.
+
+End-to-end user-side encryption, the private clouds and virtual private
+networks are trying to solve this problem, and major part of modern
+cyber-security is devoted to ensuring that person or an enterprise is
+exclusively in control and solely responsible for the privacy of their data and
+communication through the public network infrastructure, through clouds and the
+untrusted global interconnect.
+
+	INDISCRIMINATE AFFAIRS
+
+The second fundamental problem is caused by the anonmyous peering used in
+modern networks by the application layer protocols such as HTTP. During the
+evolution from static web content created by identifiable and therefore
+responsible web-admins and publishers into active social web, where the
+content is created by hardly identifiable anonymous users of the applications,
+the original global net design became more and more inapropriate for such
+public (usually wild and frequently hostile) environment created by the global
+interconnect with inherently anonymous principle of interconnecting or peering.
+
+Cyber-crime and other cyberthreats are based on discovering and abusing one
+such freedom and friendliness after another, turning the original notion of
+"friendly connection" into a "weakness and vulnerability", and generating
+counter-action of developing technolgies to patch one such "security hole"
+after another.
+
+	THE BASIS FOR THE NEW WEB
+
+Today's overly patched stack of communication and storage protocols is a big
+call for action to reinvent fundamental communication standards, specifically
+the authentication and peering. Many technologies have already been created (in
+fact more than needed) and there is no need to reinvent new ones, there is a
+desperate need to make sense of this zoo of security measures and
+countermeasures and pick a meaningful basis: the complete (covering all the
+needs) and non-redundant (minimal) set of fundamental concepts and procedures
+to redefine the "global digital interconnect".
+
+The Metax platform aims to become such foundation of "The Next Web". It is
+currently necessarily nested inside the regular Internet (TCP/IP), but it is an
+offer to the community to eventually entirely move away from SSL/TCP/UDP/IP
+communication approach, which means, that instead of trying to solve the
+inherent fundamental cyber-security and privacy problems, we are eliminating
+them by moving to a platform which is designed from ground-up with the current
+use model in mind.
+
+We start from replacing the regular HTTP(S)/IMAP(S)/SMTP and other high level
+protocols (OSI levels 5-7) by The Metax Protocol. Later we can further go down
+to OSI layer 4 (TCP), a process which is 70% implemented in the current Metax
+implementation, and even the level 3 (IP), which is more than 40% done in the
+current version.
+
+REDEFINE PEERING: Anonymous peering considered harmful
+
+Our fundamental solution to the new global interconnect is
+peering-with-responsibility, which essentially means "no anonymous peering".
+Any 2 computers, network switches, information storage services, information 
+transfer services and information processing services, i.e .any 2 connected
+devices or applications can logically connect if and only if their owners know
+each other and have accepted the connection with each other.  This is similar
+to user-accounts peering in modern social networks (notion of friends,
+folloewrs, subscribers). 
+
+Of course, the careless people can still accept connections (peering) with
+anybody, without checking the identity, but this fact is verifiable, provable,
+and more importantly - requires more effort. The old approach was encouraging
+such behavior by default. We enter the world where such behavior is considered
+as careless and irresponsible, and is off by default: i.e. it requires more
+effort to behave like that, rather than be responsible and careful in choosing
+connections/peers.
+
+This may seem trivial at first sight, but when taken down to the bottom of the
+communication stack (the right place) it triggers a paradigm-shift in
+communication. Paradigm shifts are expensive. They are revolutions, not
+evolutions. They are not only breaking backward compatibility but potentially
+resetting major developments, making it hard or impossible to reuse former
+investment into legacy solutions.  However this is a paradigm shift, to which
+the community is ready.  The fake accounts in the social networks, the spam
+e-mail and SMS have educated people to careful at making connections with
+unknow people, fake accounts, etc. The idea of bringing this selectivity and
+responsibility to the bottom of the digital interconnect technology stack does
+not sound extreme now.  The physical world is already predominantly
+non-anonymous since the very beginning: people know their ISPs and ISPs know
+their clients, and public WIFI hotspots are rare and frequently accompanied by
+log-in mechanisms and surveillance cameras.  
+
+There are many efforts, form private VPN solutions to world-wide Hiperboria
+network (the MESHNET based on CJDNS) where people peer with responsiblity and
+communicate through end-to-end encryption, eliminating the big-brother. And
+there is the infamous TOR - the DARKNET which was encouraging anonymity and
+failed as the solution for "The Next Web".
+
+We would like to emphasize the fact that TOR and even block-chain in general
+are technologies that are irrelevant (orthogonal) to Metax: Metax is also
+decentralized (peer-to-peer) like those technologies, however it is not
+anonymous, i.e. you peer only with those whom you know and with whom you
+exchanged the encryption keys. You are still connected to the world, but you do
+so through your friends, and then friends of your friends, and so on.  It is
+well known that such interconnect allows everybody to connect with everybody
+with ~7 hops, which is not much and with modern computer and network switching
+speed this will not have performance limitations even when the entire world
+completely switches to the Metax Protocol.
+
+REDEFINE STORAGE: the communication-caching-storage continuum (spectrum)
+
+We also redefine storage and the notion of file itself. Part of this revolution
+has already happened in modern realms of object-oriented design and cloud apps.
+Files are aliens in the modern social networking platforms, which are
+object-oriented not only in terms of underlying programming technology, but in
+terms of UI/UX (user experience), where the users operate with objects in the
+user interface: documents, comments, replies, chats, etc. Even the file-based
+Web 2.0 platforms such as drop-box become less and less popular with the
+increasing use of cloud-based communication, collaboration and crowd-sourcing
+environments.
+
+In the depth of telecom technologies, there is also a concept of caching, which
+renders the notion of file location and thus the notion of storage increasingly
+fuzzy. This is the notion of caching. The distant files requested from their
+original location (e.g. URL) are cached in the intermediate nodes. The second
+request does not require the file to travel from the original locaton, but
+is taken from the nearby cahcing node.  Hence the notions of "storage service"
+and "communication service" interfer and eventually blend into a continuous
+spectrum of "caching interconnect" and "decentralized storage".  The URL does
+not mean anymore a concrete physical location.  It just designates a concrete
+object in the cloud, which is omni-present in the entire network: when you
+request it, you get its copy from the nearby cache. When you update it, the
+caches are updated or dropped in all locations where the copy was stored.
+
+Metax takes these two notions to the extreme. It completely fuses together the
+notions of:
+	- file: URL+data record, e.g. object state, application state, document
+	- cached/synchronized file, which is omni-present anywhere in the net
+	- communication stream from one point of the network to other(s)
+
+These 3 notions in Metax are replaced with a single notion: the Value, stored
+in Metax under some globally unique key (universally unique id = UUID).
+Hence, from the point of view of the higher-level protocols and services, 
+the Metax network is a decentralized key-value storage with a user agent running
+on the local machine, to connect with the rest of metax network and deliver
+it's storage services to the applications running on the local machine.
+
+REDEFINE SECURITY: fundamental end-to-end encryption and trust-chains
+
+Metax-based apps are connected to this Metax network-storage to communicate
+with each other (and with themselves) by storing, reading, updating and
+deleting values in the network-storage.  The data is ecnrypted before storing,
+and is readable only by the apps which have the decryption key.  Thus only the
+users who have the decryption key can retreive and decrypt the stored values.
+
+The private key is also used for: authentication of the users; for authorization
+of connection to Metax; for establishing a connection with other users and thus
+allowing their deivces to peer with each other. Data is communicated
+through Metax in the end-to-end encrypted manner. Threfore, any intermediate
+node (friends of friends, friends of friends of friends, etc) forming the
+trust-chain from UserA to UserB is unable to decrypt the communicated/stored
+data. Moreover, intermediate communication nodes are unable to understand who
+is the start and who is the end of the chain. 
+
+This is also a well known feature of CJDNS, however CJDNS allows nesting
+regular TCP/IP in it, while Metax takes it to extreme by making its key-value
+protocol the only way to communicate in The Metax Network. One could implement
+IP on top of Metax protocol but that will be an abuse of the system, for which
+it has not been designed, implying performance penalty and loss of production
+capabilities enabled by the higher level framework components.
+
+It is important to note that Apps are also stored in Metax network. They can be
+implemented in variety of programming languages, and their source code (e.g.
+HTML/JS/CSS) or executables (ELF or WASM) can be stored/distributed through
+Metax. Thus Metax is combining the notions of Application deployment,
+Application Store (update distribution system) and even the notion of the
+Application Development Environment (IDE) which is simply yet another Metax
+App. 
+
+In summary: Metax is a content storage and delivery network, formed of Devices
+which peer with each other to implement a decentralized key-value storage, where
+any data is omni-present in the entire network, if it's UUID is known and it's
+decryption key is present at the given network node. Devices belong to Users,
+and they peer with each other only if their owners (Users) are "friends" in the
+Metax sense, i.e. they have exchanged public keys, and acknowledged their
+mutual trust by signing each others public keys with own private key, at it is
+common in public-key encryption. 
+
+From the functionality point of view this is simlar to wrapping the BitTorrent
+service in the PGP end-to-end encryption layer, and restricting it to
+non-anonymous peering, however from the implementation point of view it is
+completely different, to ensure high-performance and a string control on the
+peering mechanism.
+
+REDEFINE APPLICATION STORE: Open Source is not secure enough.
+
+It is obvious that open-source SW allows cyber-security teams to review the
+source code and find security vulnerabilities and back-doors. However it solves
+only part of the problem. If the source code is not signed by the trusted
+reviewer, and is not built on a trusted machine by trusted compiler, then it is
+equivalent to non-opensource SW, and potentially even more harmful, because
+with traditional closed-source SW people are more suspicious and therefore
+careful.
+
+One can only truly benefit from open-source SW if they build it themselves,
+using open-source compilers and open-source operating systems, which they also
+built from the source-code on their own computers, or on trusted peers
+computers. 
+
+Metax applies the notion of trust-chain not only for subscribing to trusted
+peers posts and data feeds, but also to subscription of SW compilation and
+updates distribution service. E.g. is some non technical person has a good
+friend who can compile an App for iOS/iPhone device from the source code, they
+may prefer to download the compiled App from the friend's computer, rather than
+from the App author's computer. 
+
+For example, Instigate can ship Metax to ministry of education of Ethiopia, but
+Ethiopean schools may prefer to download the binary updates from the ministry
+of education computers, rather than from Instigate.  This way, the Ministry can
+be sure that the binary App is indeed built from the source code that has been
+officially presented by Instigate, and the schools trusting the Ministry more
+than the Instigate, will prefer that. Then it will be meaningful and productive
+for the Ministry to employ own cyber-security experts to check the source code
+and patches delivered by Instigate for security vulnerabilities, because now
+they have full control on exaclty what source code is used, and what patches
+are applied, and what options are used to compile the application from the
+source code, and what third-party libraries are included in the build, etc.
+
+REDEFINE OBJECT ORIENTED DESIGN: Vostan-IMS Framework and Mani-HMI Toolkit
+
+Programming applications on top of key-value storage, and nothing else, is too
+extreme. By eliminating the notion of File and the notion of TCP/UDP socket, we
+make it impossible to use classical old-school storage and RPC frameworks, such
+as SQL Servers, PHP/Django/Nodejs/etc back-end and middlware services and RPC.
+
+All programming/scripting languages are still useful for programming Apps in
+Metax, but the legacy code has to be modified to store data only in Metax, not
+the local filesystem, and to communicate data only through Metax protocol, not
+regular protocols over TCP or UDP, not even IP. Thus for old-school programmers
+this is not an evolutionary technology, but revolutionary: requiring them to
+port significant portions of ther code, or even rewrite the entire application,
+to make it truly Metax based, without performance penalties caused by a
+fundamentally different design methodology in the legacy code.
+
+In order to simplify the life of new SW programmers, and not leave them alone
+with low-level key-value storage, we augment the Metax key-value storage API
+with Vostan - an Object-Oriented JSON Type System for storage and RPC in JSON
+format, and Mani - a GUI framework, based on Vostan the same way as GTK+ is based
+on GObject type system. 
+
+Vostan it's a modern NON-SQL storage and RPC framework, inspired by novel
+technologies such as Google's gRPC, Facebook's GrpahQL, as wall as Tim
+Bereners-Lee's RDF/Linked-Data philosophy, and the GObject framework, which
+implements OOP framework in C.  Vostan lifts the abstraction layer from global
+key-value storage to modern object oriented persistent state and remote
+procedure call framework.  
+
+Vostan objects and Functions are further wrapped into Mani widgets to present
+to the end users in varoius ways: from text-only interfaces to Mind-Map based
+touch-screen friendly interface, as well as classical GUI widgets made for
+classical HMI through Mouse/Keyboard/Display.  Mani provides super-widgets that
+can display any vostan-objects properties in tree-view, table-view,
+property-editor, and other well known HMI/UI/UX paradigms (e.g. graph or
+mind-map).
+
+Vostan and Mani are evolutions of Instigate's C++ Application Framework,
+which is a technology devleoped since 2005, and open-sourced in 2015.
+You can find its documentation at https://ggg.instigatedesign.com/#84 
+and get it from: https://sourceforge.net/projects/instigate-fwk/.
+

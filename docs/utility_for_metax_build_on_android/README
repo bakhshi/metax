@@ -1,0 +1,45 @@
+
+This is the README file for Metax build on Android
+
+
+The following prerequisites/installations are needed to build metax on Android:
+
+1. Download Android NDK from the following link:https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip
+and install, e.g. in /opt/android-ndk-r16b/
+
+2.Download already built openssl1.1.0g_android15.tbz2 files from the following link:https://metax.leviathan.am:7071/db/get?id=ab4cc821-3269-4bf0-9209-7c026b1c2431#01139edd-2761-4895-86c8-88093c856f7f 
+and install appropriate place.
+
+3. Run standalone toolchain from NDK
+        $ ./create_toolchain.sh 
+
+4. Download complete edition of Poco library, version 1.8.1 from:
+Source files:
+        https://pocoproject.org/download/index.html
+
+                - Customize <poco_dir>/build/config/Android file for Android build, e.g.
+                 specify compiler (clang for our case), path to openssl
+                 (/opt/openssl/openssl1.1.0g_android15/ in our case) etc.  Please see the Android file in
+                 this folder as a reference.
+
+                - cd <poco_dir>
+
+                - configure for Android
+                 ./configure --config=Android --prefix=/opt/poco/openssl1.1.0g_android15 --static --no-tests --no-samples --omit=CppUnit,Data,MongoDB,PageCompiler,Zip,Redis
+
+                - Export PATH environment variable to include bin directory of standalone toolchain created in step 3. E.g.:
+                  export PATH=/home/builder/utility_for_poco_build_on_android/toolchain/bin:$PATH
+
+                - $ make -j2 ANDROID_ABI=armeabi
+
+                - sudo make install
+                
+                - After executing these steps appropriate poco libs will be available in the path specified with "--prefix".
+Already built files:
+        https://metax.leviathan.am:7071/db/get?id=ab4cc821-3269-4bf0-9209-7c026b1c2431#3a2435cb-b0c4-431e-8a1e-6af0fdfa17df
+
+5. After executing these steps change appropriate poco and openssl PATHS in CMakeLists.txt file.
+
+6. $ cd metax/android/metax
+7. $ ./gradlew assembleDebug
+

@@ -1,0 +1,97 @@
+digraph g {
+        compound=true;
+        graph [
+                rankdir = "LR"
+                bgcolor = "lightyellow"
+                style="filled"
+        ];
+
+        node [
+                fontsize = "16"
+                shape = "ellipse"
+                style="filled"
+        ];
+
+        edge [
+        ];
+
+        subgraph cluster_0 {
+                label = "config"
+                bgcolor = "lightblue"
+                "dummy_0" [
+                        shape=point style=invis
+                ]
+        }
+
+        subgraph cluster_1 {
+                label = "key manager"
+                bgcolor = "lightblue"
+                "dummy_1" [
+                        shape=point style=invis
+                ];
+        }
+
+        subgraph cluster_2 {
+                label="user manager";
+                bgcolor = "lightblue"
+                "um_0" [
+                        label = "4. create cipher"
+                        shape = "box"
+                ];
+                "um_1" [
+                        label = "5. generate\nor\nread"
+                        shape = "box"
+                ];
+                "dummy_2" [
+                        shape=point style=invis
+                ];
+                "um_2" [
+                        label="10. timer\nencrypt/save"
+                        shape = "circle"
+                ];
+        }
+
+        subgraph cluster_3 {
+                label="kernel";
+                bgcolor = "lightblue"
+                "requests" [
+                        label = "8. save\nupdate\ndelete"
+                        shape = "circle"
+                ];
+        }
+
+        "dummy_0" -> "dummy_1" [
+                label="1. initialize keys"
+                id = 0
+                lhead=cluster_1
+                ltail=cluster_0
+        ];
+
+        "dummy_1" -> "dummy_0" [
+                label="2. initialized"
+                id = 0
+                lhead=cluster_0
+                ltail=cluster_1
+        ];
+
+        "dummy_0" -> "um_0" [
+                label="3. storage path, user json info path, timer value"
+                id = 1
+                ltail=cluster_0
+        ];
+
+        "um_1" -> "requests" [
+                label="6. user json (as string)"
+                id = 2
+                lhead=cluster_3
+        ];
+
+        "requests" -> "dummy_2" [
+                label="9. update/delete"
+                id = 2
+                lhead=cluster_2
+        ];
+}
+
+
+

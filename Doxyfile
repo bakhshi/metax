@@ -1,0 +1,5 @@
+
+@INCLUDE=$(mkf_path)/Doxyfile
+
+PROJECT_NAME = $(project_name)
+PROJECT_NUMBER = $(project_version)

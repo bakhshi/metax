@@ -1,0 +1,169 @@
+
+- L3 takes responsibility to make decision which rfq(s) is/are  winner(s)
+- L3 has dedicated storage-server information for data saving???????????????????
+
+Assumption:
+data stored in Leviathan has the following structure:
+        - key == #id
+        - value {
+                        encrypted_data
+                        createdDate: date&time
+                        version: [last|version1.1.xxx] ??? may be required for version control
+                        createdBy: userID
+                        sessionID: SSID
+                        ownedBy: userID/public
+                        lifetime: duration
+                        sharedList: {
+                                [encrypted[SymKey]
+                                userID (as agreed so far userID == userPubKey)],
+                                ....
+                        }
+                        storage_size_requested: size requested for the node, may be 2-3x larger than node actual size
+
+                 }
+
+payment transaction info
+        - userID, SessionID, NodeID
+
+
+Open questions:
+        - how to verify that the data is stored on the trusted server.
+          How to make sure that the searchable-private data is stored on the correct/trusted server.
+        - version control of the node may be implemented within IMS as separate
+          application or may be implemented as property of the IMS::type
+
+
+struct L4_L3_request
+{
+        command {get - waits for response,
+                 delete - ,
+                 save,
+                 update}
+        args {nodeID}
+
+        data_type - in case of save op {public, private, secret}
+                router defines the following factors based on type
+                reliability_factor - in case of save op
+                accessability_factor - in case of save op
+        cost
+
+        authentication_msg - for authentication
+}
+
+
+L4_L3_Get_Request
+{
+        req_id = uniqe id set by L4
+        cmd = get
+        id = NodeID
+        auth_msg = Enc_User_PrivKey(NodeID+RandomData)
+}
+
+Positive Response from L3->L4
+        L4_L3_Get_Request_response
+        {
+                req_id = id of request
+                ack = true
+                data = Enc_User_PubKey(Server_PubKey)
+        }
+        L4_L3_Get_Request_response
+        {
+                req_id = id of request
+                ack = true
+                data = [encrypted_data == Enc_Server_PrivKey(Enc_SymKey(data) + Enc_User_PubKey(SymetricKey))]
+        }
+
+Negative Response From L3->L4
+        {
+                req_id = id of request
+                ack = false
+                status = {timeout, permission denied}
+                data = [NULL]
+        }
+
+################################################################################################
+L4_L3_Store_Request
+{
+        req_id = uniqe id set by L4
+        cmd = rfq
+        type = {storage, cpu}
+        storage_type = {searchable}
+        size = in bytes
+        data_type = {public, secret, private}
+        reliability_factor =    [s, e] - optional, gets default one if not specified
+        accessibility_factor =  [s, e] - optional, gets default one if not specified
+        cost =                  [s, e] - optional, gets default one if not specified
+        upload_speed_min = in bits/s
+}
+
+Positive Response from L3->L4
+        L4_L3_Store_Request_response
+        {
+                req_id = id of request
+                ack = true
+                user_id = may be required in case of payments/etc.
+                session_id = may be required in case of ratings
+        } ///
+        - L4 starts negotiation with L4 of the end point  and provides information
+        regarding transfer details based on the type of the transfered data:
+                * Type - Partial data , Data , StreamData
+                * Start of the transaction
+                * Data .....
+                * End of the transaction
+                * Duration - lifetime of the data
+
+Negative Response From L3->L4
+        L4_L3_Store_Request_response
+        {
+                req_id = id of request
+                ack = false
+                status = {timeout, no satisfying offer}
+                suggested_reliability_factor =    [s, e] - optional, gets default one if not specified
+                suggested_accessibility_factor =  [s, e] - optional, gets default one if not specified
+                suggested_cost =                  [s, e] - optional, gets default one if not specified
+        }
+
+################################################################################################
+L4_L3_Delete_Request
+{
+        req_id = uniqe id set by L4
+        cmd = delete
+        id = NodeID
+        auth_msg = Enc_User_PrivKey(NodeID+RandomData)
+}
+
+L4_L3_Delete_Response
+{
+        req_id = uniqe id set by L4
+        ack = {success, failure}
+        status = {not_owned, lifetime_prolonged, done, timeout}
+        data = sessionID in case of success, null otherwise
+}
+
+In case of owned node is not deleted from the LevNet due to remote storage being
+inactive initiator suspends transaction in the wallet and returns to suspended
+transaction from time to time for cleanup purpose.
+
+(optional)Each Vostan_P2P device upon wake up also performs clean up
+functionality on Wallet transaction in order to make sure that all transactions
+are still valid. 2 cases are possible:
+        - Transaction is not valid as owner withdrew the transaction
+                - node is deleted automatically
+        - Transaction payer is not active
+                - within 1 month/week storage owner tries to communicate with
+                payer and deletes the node automatically in case of failure.
+
+
+
+################################################################################################
+L4_L3_Update_Request
+{
+        req_id
+        cmd = update
+        id = nodeID
+        auth_msg =
+}
+
+L3 makes get_for_update requests and only after it sends update to the received rfqs ...
+
+

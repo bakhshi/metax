@@ -1,0 +1,34 @@
+
+DECRYPTING USER JSON
+- compile the cpp_decrypt_user_json.cpp file:
+  $ g++ cpp_decrypt_user_json.cpp -lPocoFoundation -lPocoCrypto \
+	-o decrypt_user_json
+- decrypt user json by running executable created in above step:
+  $ ./decrypt_user_json <forlder_of_public_key> <input> <output>
+  <input> is the encrypted user json, <output> is a filename where decrypted
+  user json will be saved.
+
+ENCRYPTING USER JSON
+- compile the cpp_encrypt_user_json.cpp file:
+  $ g++ cpp_encrypt_user_json.cpp -lPocoFoundation -lPocoCrypto \
+	-o encrypt_user_json
+- encrypt user json by running executable created in above step:
+  $ ./encrypt_user_json <forlder_of_public_key> <input> <output>
+  <input> is the unencrypted user json, <output> is a filename where encrypted
+  user json will be saved.
+
+CONVERT DB TO NEW KEY MANAGEMENT FORMAT
+convert_db.js will convert old format db (with shared objects) to new format
+(with user json). It does the following three steps:
+- find all the shared objects in the specified old format db
+- get them through old Metax
+- save them in a new Metax.
+
+Please read the file and adjust the used variables (folder/file names etc.).
+
+It is useful to not run whole script at once. E.g. run the first two steps.
+Then check for the errors, e.g. remove files that couldn't be decrypted or get
+failed for some other reasons.
+Then after cleanup of not valid uuids, then run the third step.
+
+

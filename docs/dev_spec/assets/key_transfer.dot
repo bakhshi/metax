@@ -1,0 +1,149 @@
+digraph g {
+        compound=true;
+        graph [
+                //rankdir = "LR"
+                bgcolor = "lightyellow"
+                style="filled"
+        ];
+
+        node [
+                fontsize = "16"
+                shape = "ellipse"
+                style="filled"
+        ];
+
+        edge [
+        ];
+
+        subgraph cluster_0 {
+                label = "old device"
+                bgcolor = "lightblue"
+                "dummy_0" [
+                        shape=point style=invis
+                ]
+                "ui0" [
+                        label = "UI"
+                ];
+                "kernel0" [
+                        label = "Kernel"
+                        shape = "box"
+                ];
+                "config0" [
+                        label = "Config"
+                        shape = "box"
+                ];
+                "link0" [
+                        label = "Link"
+                        shape = "box"
+                ];
+
+                "ui0" -> "kernel0" [
+                        label="1. start paring (timeout)"
+                ];
+                "kernel0" -> "config0" [
+                        label="1. Start paring (timeout)"
+                ];
+                "config0" -> "link0" [
+                        label="1. Start paring (timeout, cert paths)"
+                ];
+                "link0" -> "link0" [
+                        label="1. Start server socket"
+                ];
+                "link0" -> "config0" [
+                        label="2. Code"
+                ];
+                "config0" -> "kernel0" [
+                        label="2. Code"
+                ];
+                "kernel0" -> "ui0" [
+                        label="2. Code"
+                ];
+                "link0" -> "link0" [
+                        label="5. Check code"
+                ];
+                "link0" -> "config0" [
+                        label="6. Notify key sent"
+                ];
+                "config0" -> "kernel0" [
+                        label="6. Notify key sent"
+                ];
+                "kernel0" -> "ui0" [
+                        label="6. Notify key sent"
+                ];
+        }
+
+        subgraph cluster_1 {
+                label = "new device"
+                bgcolor = "lightblue"
+                "dummy_1" [
+                        shape=point style=invis
+                ];
+                "ui1" [
+                        label = "UI"
+                ];
+                "kernel1" [
+                        label = "Kernel"
+                        shape = "box"
+                ];
+                "config1" [
+                        label = "Config"
+                        shape = "box"
+                ];
+                "link1" [
+                        label = "Link"
+                        shape = "box"
+                ];
+
+                "ui1" -> "kernel1" [
+                        label="3. Get pairing list"
+                ];
+                "kernel1" -> "config1" [
+                        label="3. Get pairing list"
+                ];
+                "config1" -> "link1" [
+                        label="3. Get pairing list"
+                ];
+                "link1" -> "link1" [
+                        label="3. Scan network (LAN, Wi-Fi)"
+                ];
+                "link1" -> "config1" [
+                        label="4. IP list"
+                ];
+                "config1" -> "kernel1" [
+                        label="4. IP list"
+                ];
+                "kernel1" -> "ui1" [
+                        label="4. IP list"
+                ];
+                "ui1" -> "kernel1" [
+                        label="5. Pair (IP, code)"
+                ];
+                "kernel1" -> "config1" [
+                        label="5. Pair (IP, code)"
+                ];
+                "config1" -> "link1" [
+                        label="5. Pair (IP, code)"
+                ];
+                "link1" -> "config1" [
+                        label="6. Keys (or fail)"
+                ];
+                "config1" -> "kernel1" [
+                        label="6. Keys (or fail)"
+                ];
+                "kernel1" -> "ui1" [
+                        label="6. Keys received"
+                ];
+        }
+
+        "link1" -> "link0" [
+                label="5. Pair (code)"
+                id = 1
+        ];
+        "link0" -> "link1" [
+                label="6. Send keys (or fail)"
+                id = 1
+        ];
+}
+
+
+

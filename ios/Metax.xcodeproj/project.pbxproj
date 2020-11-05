@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A3D9516222D1C8F00A1374E /* email_sender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D9514222D1C8F00A1374E /* email_sender.cpp */; };
+		8266C0C120BF278600AF44BA /* MetaxRunner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8266C0C020BF278600AF44BA /* MetaxRunner.mm */; };
+		CD31E63723A3BF7200EF9C2A /* ssl_password_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD31E63523A3BF7200EF9C2A /* ssl_password_handler.cpp */; };
+		CD4EF0FD233378540047FEF1 /* user_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4EF0FB233378530047FEF1 /* user_manager.cpp */; };
+		CD66E70723E2ABB5000286D4 /* refuse_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD66E70423E2ABB5000286D4 /* refuse_handler.cpp */; };
+		CD66E70823E2ABB5000286D4 /* checked_web_request_handler_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD66E70623E2ABB5000286D4 /* checked_web_request_handler_factory.cpp */; };
+		E6032D912151426C002B20F8 /* http_server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D7F2151426B002B20F8 /* http_server.cpp */; };
+		E6032D922151426C002B20F8 /* web_request_handler_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D802151426B002B20F8 /* web_request_handler_factory.cpp */; };
+		E6032D932151426C002B20F8 /* db_request_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D852151426C002B20F8 /* db_request_handler.cpp */; };
+		E6032D952151426C002B20F8 /* default_request_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D882151426C002B20F8 /* default_request_handler.cpp */; };
+		E6032D962151426C002B20F8 /* web_api_adapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D8B2151426C002B20F8 /* web_api_adapter.cpp */; };
+		E6032D972151426C002B20F8 /* websocket_request_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D8D2151426C002B20F8 /* websocket_request_handler.cpp */; };
+		E6032D982151426C002B20F8 /* configuration_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6032D8E2151426C002B20F8 /* configuration_handler.cpp */; };
+		E616CA2720C0147D00372159 /* backup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9CE20C0147D00372159 /* backup.cpp */; };
+		E616CA2820C0147D00372159 /* configuration_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9D020C0147D00372159 /* configuration_manager.cpp */; };
+		E616CA2920C0147D00372159 /* hop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9D220C0147D00372159 /* hop.cpp */; };
+		E616CA2A20C0147D00372159 /* kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9D420C0147D00372159 /* kernel.cpp */; };
+		E616CA2B20C0147D00372159 /* key_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9D620C0147D00372159 /* key_manager.cpp */; };
+		E616CA2C20C0147D00372159 /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9D820C0147D00372159 /* link.cpp */; };
+		E616CA2D20C0147D00372159 /* link_peer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9DA20C0147D00372159 /* link_peer.cpp */; };
+		E616CA2F20C0147D00372159 /* router.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9DE20C0147D00372159 /* router.cpp */; };
+		E616CA3020C0147D00372159 /* socket_reactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9E020C0147D00372159 /* socket_reactor.cpp */; };
+		E616CA3120C0147D00372159 /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9E220C0147D00372159 /* storage.cpp */; };
+		E616CA3220C0147D00372159 /* wallet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9E420C0147D00372159 /* wallet.cpp */; };
+		E616CA3520C0147D00372159 /* db_json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9EA20C0147D00372159 /* db_json.cpp */; };
+		E616CA3620C0147D00372159 /* db_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9EC20C0147D00372159 /* db_manager.cpp */; };
+		E616CA3720C0147D00372159 /* default_package.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9EF20C0147D00372159 /* default_package.cpp */; };
+		E616CA3920C0147D00372159 /* task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9F420C0147D00372159 /* task.cpp */; };
+		E616CA3A20C0147D00372159 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E616C9F620C0147D00372159 /* utils.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E6A0C9AE20B7028200A98BE2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5A3D9514222D1C8F00A1374E /* email_sender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = email_sender.cpp; sourceTree = "<group>"; };
+		5A3D9515222D1C8F00A1374E /* email_sender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = email_sender.hpp; sourceTree = "<group>"; };
+		8266C0BF20BF278600AF44BA /* MetaxRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetaxRunner.h; sourceTree = "<group>"; };
+		8266C0C020BF278600AF44BA /* MetaxRunner.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MetaxRunner.mm; sourceTree = "<group>"; };
+		CD31E63523A3BF7200EF9C2A /* ssl_password_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ssl_password_handler.cpp; sourceTree = "<group>"; };
+		CD31E63623A3BF7200EF9C2A /* ssl_password_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ssl_password_handler.hpp; sourceTree = "<group>"; };
+		CD4EF0FB233378530047FEF1 /* user_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_manager.cpp; sourceTree = "<group>"; };
+		CD4EF0FC233378540047FEF1 /* user_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = user_manager.hpp; sourceTree = "<group>"; };
+		CD66E70323E2ABB4000286D4 /* refuse_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = refuse_handler.hpp; sourceTree = "<group>"; };
+		CD66E70423E2ABB5000286D4 /* refuse_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = refuse_handler.cpp; sourceTree = "<group>"; };
+		CD66E70523E2ABB5000286D4 /* checked_web_request_handler_factory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = checked_web_request_handler_factory.hpp; sourceTree = "<group>"; };
+		CD66E70623E2ABB5000286D4 /* checked_web_request_handler_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = checked_web_request_handler_factory.cpp; sourceTree = "<group>"; };
+		E6032D7F2151426B002B20F8 /* http_server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_server.cpp; sourceTree = "<group>"; };
+		E6032D802151426B002B20F8 /* web_request_handler_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_request_handler_factory.cpp; sourceTree = "<group>"; };
+		E6032D822151426B002B20F8 /* websocket_request_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = websocket_request_handler.hpp; sourceTree = "<group>"; };
+		E6032D832151426B002B20F8 /* db_request_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = db_request_handler.hpp; sourceTree = "<group>"; };
+		E6032D842151426B002B20F8 /* web_api_adapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = web_api_adapter.hpp; sourceTree = "<group>"; };
+		E6032D852151426C002B20F8 /* db_request_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db_request_handler.cpp; sourceTree = "<group>"; };
+		E6032D872151426C002B20F8 /* web_request_handler_factory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = web_request_handler_factory.hpp; sourceTree = "<group>"; };
+		E6032D882151426C002B20F8 /* default_request_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = default_request_handler.cpp; sourceTree = "<group>"; };
+		E6032D892151426C002B20F8 /* http_server.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = http_server.hpp; sourceTree = "<group>"; };
+		E6032D8A2151426C002B20F8 /* configuration_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configuration_handler.hpp; sourceTree = "<group>"; };
+		E6032D8B2151426C002B20F8 /* web_api_adapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_api_adapter.cpp; sourceTree = "<group>"; };
+		E6032D8D2151426C002B20F8 /* websocket_request_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = websocket_request_handler.cpp; sourceTree = "<group>"; };
+		E6032D8E2151426C002B20F8 /* configuration_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = configuration_handler.cpp; sourceTree = "<group>"; };
+		E6032D8F2151426C002B20F8 /* default_request_handler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = default_request_handler.hpp; sourceTree = "<group>"; };
+		E616C9CE20C0147D00372159 /* backup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = backup.cpp; sourceTree = "<group>"; };
+		E616C9CF20C0147D00372159 /* backup.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = backup.hpp; sourceTree = "<group>"; };
+		E616C9D020C0147D00372159 /* configuration_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = configuration_manager.cpp; sourceTree = "<group>"; };
+		E616C9D120C0147D00372159 /* configuration_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configuration_manager.hpp; sourceTree = "<group>"; };
+		E616C9D220C0147D00372159 /* hop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hop.cpp; sourceTree = "<group>"; };
+		E616C9D320C0147D00372159 /* hop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hop.hpp; sourceTree = "<group>"; };
+		E616C9D420C0147D00372159 /* kernel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kernel.cpp; sourceTree = "<group>"; };
+		E616C9D520C0147D00372159 /* kernel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kernel.hpp; sourceTree = "<group>"; };
+		E616C9D620C0147D00372159 /* key_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = key_manager.cpp; sourceTree = "<group>"; };
+		E616C9D720C0147D00372159 /* key_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = key_manager.hpp; sourceTree = "<group>"; };
+		E616C9D820C0147D00372159 /* link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link.cpp; sourceTree = "<group>"; };
+		E616C9D920C0147D00372159 /* link.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = link.hpp; sourceTree = "<group>"; };
+		E616C9DA20C0147D00372159 /* link_peer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link_peer.cpp; sourceTree = "<group>"; };
+		E616C9DB20C0147D00372159 /* link_peer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = link_peer.hpp; sourceTree = "<group>"; };
+		E616C9DC20C0147D00372159 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		E616C9DD20C0147D00372159 /* protocols.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = protocols.hpp; sourceTree = "<group>"; };
+		E616C9DE20C0147D00372159 /* router.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = router.cpp; sourceTree = "<group>"; };
+		E616C9DF20C0147D00372159 /* router.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = router.hpp; sourceTree = "<group>"; };
+		E616C9E020C0147D00372159 /* socket_reactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_reactor.cpp; sourceTree = "<group>"; };
+		E616C9E120C0147D00372159 /* socket_reactor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = socket_reactor.hpp; sourceTree = "<group>"; };
+		E616C9E220C0147D00372159 /* storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = storage.cpp; sourceTree = "<group>"; };
+		E616C9E320C0147D00372159 /* storage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = storage.hpp; sourceTree = "<group>"; };
+		E616C9E420C0147D00372159 /* wallet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wallet.cpp; sourceTree = "<group>"; };
+		E616C9E520C0147D00372159 /* wallet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wallet.hpp; sourceTree = "<group>"; };
+		E616C9EA20C0147D00372159 /* db_json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db_json.cpp; sourceTree = "<group>"; };
+		E616C9EB20C0147D00372159 /* db_json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = db_json.hpp; sourceTree = "<group>"; };
+		E616C9EC20C0147D00372159 /* db_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db_manager.cpp; sourceTree = "<group>"; };
+		E616C9ED20C0147D00372159 /* db_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = db_manager.hpp; sourceTree = "<group>"; };
+		E616C9EE20C0147D00372159 /* db_sqlite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = db_sqlite.hpp; sourceTree = "<group>"; };
+		E616C9EF20C0147D00372159 /* default_package.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = default_package.cpp; sourceTree = "<group>"; };
+		E616C9F020C0147D00372159 /* default_package.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = default_package.hpp; sourceTree = "<group>"; };
+		E616C9F120C0147D00372159 /* fifo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fifo.hpp; sourceTree = "<group>"; };
+		E616C9F220C0147D00372159 /* fifo.txx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fifo.txx; sourceTree = "<group>"; };
+		E616C9F320C0147D00372159 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		E616C9F420C0147D00372159 /* task.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task.cpp; sourceTree = "<group>"; };
+		E616C9F520C0147D00372159 /* task.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = task.hpp; sourceTree = "<group>"; };
+		E616C9F620C0147D00372159 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		E616C9F720C0147D00372159 /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		E6A0C9B020B7028200A98BE2 /* libMetax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetax.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6A0C9AD20B7028200A98BE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E6032D7D21514205002B20F8 /* metax_web_api */ = {
+			isa = PBXGroup;
+			children = (
+				CD66E70623E2ABB5000286D4 /* checked_web_request_handler_factory.cpp */,
+				CD66E70523E2ABB5000286D4 /* checked_web_request_handler_factory.hpp */,
+				CD66E70423E2ABB5000286D4 /* refuse_handler.cpp */,
+				CD66E70323E2ABB4000286D4 /* refuse_handler.hpp */,
+				5A3D9514222D1C8F00A1374E /* email_sender.cpp */,
+				5A3D9515222D1C8F00A1374E /* email_sender.hpp */,
+				E6032D8E2151426C002B20F8 /* configuration_handler.cpp */,
+				E6032D8A2151426C002B20F8 /* configuration_handler.hpp */,
+				E6032D852151426C002B20F8 /* db_request_handler.cpp */,
+				E6032D832151426B002B20F8 /* db_request_handler.hpp */,
+				E6032D882151426C002B20F8 /* default_request_handler.cpp */,
+				E6032D8F2151426C002B20F8 /* default_request_handler.hpp */,
+				E6032D7F2151426B002B20F8 /* http_server.cpp */,
+				E6032D892151426C002B20F8 /* http_server.hpp */,
+				E6032D8B2151426C002B20F8 /* web_api_adapter.cpp */,
+				E6032D842151426B002B20F8 /* web_api_adapter.hpp */,
+				E6032D802151426B002B20F8 /* web_request_handler_factory.cpp */,
+				E6032D872151426C002B20F8 /* web_request_handler_factory.hpp */,
+				E6032D8D2151426C002B20F8 /* websocket_request_handler.cpp */,
+				E6032D822151426B002B20F8 /* websocket_request_handler.hpp */,
+			);
+			path = metax_web_api;
+			sourceTree = "<group>";
+		};
+		E616C9CC20C0147D00372159 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E6032D7D21514205002B20F8 /* metax_web_api */,
+				E616C9CD20C0147D00372159 /* metax */,
+				E616C9E920C0147D00372159 /* platform */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
+		E616C9CD20C0147D00372159 /* metax */ = {
+			isa = PBXGroup;
+			children = (
+				CD31E63523A3BF7200EF9C2A /* ssl_password_handler.cpp */,
+				CD31E63623A3BF7200EF9C2A /* ssl_password_handler.hpp */,
+				CD4EF0FB233378530047FEF1 /* user_manager.cpp */,
+				CD4EF0FC233378540047FEF1 /* user_manager.hpp */,
+				E616C9CE20C0147D00372159 /* backup.cpp */,
+				E616C9CF20C0147D00372159 /* backup.hpp */,
+				E616C9D020C0147D00372159 /* configuration_manager.cpp */,
+				E616C9D120C0147D00372159 /* configuration_manager.hpp */,
+				E616C9D220C0147D00372159 /* hop.cpp */,
+				E616C9D320C0147D00372159 /* hop.hpp */,
+				E616C9D420C0147D00372159 /* kernel.cpp */,
+				E616C9D520C0147D00372159 /* kernel.hpp */,
+				E616C9D620C0147D00372159 /* key_manager.cpp */,
+				E616C9D720C0147D00372159 /* key_manager.hpp */,
+				E616C9D820C0147D00372159 /* link.cpp */,
+				E616C9D920C0147D00372159 /* link.hpp */,
+				E616C9DA20C0147D00372159 /* link_peer.cpp */,
+				E616C9DB20C0147D00372159 /* link_peer.hpp */,
+				E616C9DC20C0147D00372159 /* makefile */,
+				E616C9DD20C0147D00372159 /* protocols.hpp */,
+				E616C9DE20C0147D00372159 /* router.cpp */,
+				E616C9DF20C0147D00372159 /* router.hpp */,
+				E616C9E020C0147D00372159 /* socket_reactor.cpp */,
+				E616C9E120C0147D00372159 /* socket_reactor.hpp */,
+				E616C9E220C0147D00372159 /* storage.cpp */,
+				E616C9E320C0147D00372159 /* storage.hpp */,
+				E616C9E420C0147D00372159 /* wallet.cpp */,
+				E616C9E520C0147D00372159 /* wallet.hpp */,
+			);
+			path = metax;
+			sourceTree = "<group>";
+		};
+		E616C9E920C0147D00372159 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				E616C9EA20C0147D00372159 /* db_json.cpp */,
+				E616C9EB20C0147D00372159 /* db_json.hpp */,
+				E616C9EC20C0147D00372159 /* db_manager.cpp */,
+				E616C9ED20C0147D00372159 /* db_manager.hpp */,
+				E616C9EE20C0147D00372159 /* db_sqlite.hpp */,
+				E616C9EF20C0147D00372159 /* default_package.cpp */,
+				E616C9F020C0147D00372159 /* default_package.hpp */,
+				E616C9F120C0147D00372159 /* fifo.hpp */,
+				E616C9F220C0147D00372159 /* fifo.txx */,
+				E616C9F320C0147D00372159 /* makefile */,
+				E616C9F420C0147D00372159 /* task.cpp */,
+				E616C9F520C0147D00372159 /* task.hpp */,
+				E616C9F620C0147D00372159 /* utils.cpp */,
+				E616C9F720C0147D00372159 /* utils.hpp */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		E6A0C9A720B7028200A98BE2 = {
+			isa = PBXGroup;
+			children = (
+				E616C9CC20C0147D00372159 /* src */,
+				E6A0C9B220B7028200A98BE2 /* Metax */,
+				E6A0C9B120B7028200A98BE2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6A0C9B120B7028200A98BE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6A0C9B020B7028200A98BE2 /* libMetax.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6A0C9B220B7028200A98BE2 /* Metax */ = {
+			isa = PBXGroup;
+			children = (
+				8266C0BF20BF278600AF44BA /* MetaxRunner.h */,
+				8266C0C020BF278600AF44BA /* MetaxRunner.mm */,
+			);
+			path = Metax;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E6A0C9AF20B7028200A98BE2 /* Metax */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6A0C9B920B7028200A98BE2 /* Build configuration list for PBXNativeTarget "Metax" */;
+			buildPhases = (
+				E6A0C9AC20B7028200A98BE2 /* Sources */,
+				E6A0C9AD20B7028200A98BE2 /* Frameworks */,
+				E6A0C9AE20B7028200A98BE2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Metax;
+			productName = Metax;
+			productReference = E6A0C9B020B7028200A98BE2 /* libMetax.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6A0C9A820B7028200A98BE2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Instigate Mobile";
+				TargetAttributes = {
+					E6A0C9AF20B7028200A98BE2 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+				};
+			};
+			buildConfigurationList = E6A0C9AB20B7028200A98BE2 /* Build configuration list for PBXProject "Metax" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E6A0C9A720B7028200A98BE2;
+			productRefGroup = E6A0C9B120B7028200A98BE2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6A0C9AF20B7028200A98BE2 /* Metax */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6A0C9AC20B7028200A98BE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E616CA3220C0147D00372159 /* wallet.cpp in Sources */,
+				E616CA2920C0147D00372159 /* hop.cpp in Sources */,
+				E616CA2B20C0147D00372159 /* key_manager.cpp in Sources */,
+				E616CA3120C0147D00372159 /* storage.cpp in Sources */,
+				E6032D952151426C002B20F8 /* default_request_handler.cpp in Sources */,
+				E616CA2820C0147D00372159 /* configuration_manager.cpp in Sources */,
+				CD66E70723E2ABB5000286D4 /* refuse_handler.cpp in Sources */,
+				E6032D912151426C002B20F8 /* http_server.cpp in Sources */,
+				E6032D932151426C002B20F8 /* db_request_handler.cpp in Sources */,
+				CD4EF0FD233378540047FEF1 /* user_manager.cpp in Sources */,
+				E616CA3520C0147D00372159 /* db_json.cpp in Sources */,
+				E616CA2F20C0147D00372159 /* router.cpp in Sources */,
+				CD66E70823E2ABB5000286D4 /* checked_web_request_handler_factory.cpp in Sources */,
+				E6032D962151426C002B20F8 /* web_api_adapter.cpp in Sources */,
+				E616CA3720C0147D00372159 /* default_package.cpp in Sources */,
+				E6032D982151426C002B20F8 /* configuration_handler.cpp in Sources */,
+				E616CA2720C0147D00372159 /* backup.cpp in Sources */,
+				E616CA3620C0147D00372159 /* db_manager.cpp in Sources */,
+				E6032D972151426C002B20F8 /* websocket_request_handler.cpp in Sources */,
+				8266C0C120BF278600AF44BA /* MetaxRunner.mm in Sources */,
+				E616CA3020C0147D00372159 /* socket_reactor.cpp in Sources */,
+				E616CA2A20C0147D00372159 /* kernel.cpp in Sources */,
+				E616CA3A20C0147D00372159 /* utils.cpp in Sources */,
+				E616CA3920C0147D00372159 /* task.cpp in Sources */,
+				E616CA2C20C0147D00372159 /* link.cpp in Sources */,
+				E6032D922151426C002B20F8 /* web_request_handler_factory.cpp in Sources */,
+				E616CA2D20C0147D00372159 /* link_peer.cpp in Sources */,
+				CD31E63723A3BF7200EF9C2A /* ssl_password_handler.cpp in Sources */,
+				5A3D9516222D1C8F00A1374E /* email_sender.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E6A0C9B720B7028200A98BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Metax/src";
+			};
+			name = Debug;
+		};
+		E6A0C9B820B7028200A98BE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Metax/src";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E6A0C9BA20B7028200A98BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					/opt/openssl/ios,
+					/opt/poco/ios,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/metax_web_api",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/metax",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/platform",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E6A0C9BB20B7028200A98BE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					/opt/openssl/ios,
+					/opt/poco/ios,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/metax_web_api",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/metax",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src",
+					"$(HOME)/workspace/leviathan-ios/metax/ios/Metax/src/platform",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6A0C9AB20B7028200A98BE2 /* Build configuration list for PBXProject "Metax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6A0C9B720B7028200A98BE2 /* Debug */,
+				E6A0C9B820B7028200A98BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6A0C9B920B7028200A98BE2 /* Build configuration list for PBXNativeTarget "Metax" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6A0C9BA20B7028200A98BE2 /* Debug */,
+				E6A0C9BB20B7028200A98BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E6A0C9A820B7028200A98BE2 /* Project object */;
+}

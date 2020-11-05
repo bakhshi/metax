@@ -1,0 +1,49 @@
+
+It is possible to encrypt/decrypt user json file using the utilitie scripts in
+this folder.
+
+REENCRYPTING USER JSON
+The below steps allows to reencrypt old user json encrypted with public key
+with aes key.
+- compile old decryption script:
+  $ g++ utils/transition_to_new_key_mgmt/cpp_decrypt_user_json.cpp \
+	-lPocoFoundation -lPocoCrypto -o old_decrypt_user_json
+- decrypt user json by running executable created in above step:
+  $ ./decrypt_user_json <forlder_of_public_key> <input> <output>
+- run new version of metax to generate aes keys for user json. The path of
+  user json info file can be specified in config.xml in user_json_info tag.
+  Default path is $HOME/.leviathan/keys/user_json_info.json 
+- as the file is generated, kill Metax
+- compile new encrypt/decrypt script
+  $ g++ utils/encryption_decryption/cpp_decrypt_encrypt_user_json.cpp \
+	-std=c++11  -I/usr/local/opt/openssl/include/  -lPocoFoundation \
+	-lPocoCrypto -lPocoJSON -o decrypt_encrypt_user_json
+- encrypt user json with new aes key
+  $ ./decrypt_encrypt_user_json enc <user_json_info_file> \
+	<decrypted_user_json>  <output_file>
+- replase the user.json file with the newly created <output_file>
+  
+
+ENCRYPT/DECRYP USER JSON WITH AES KEY
+C++ way:
+- compile the cpp_decrypt_encrypt_user_json.cpp file:
+  $ g++ utils/encryption_decryption/cpp_decrypt_encrypt_user_json.cpp \
+	-std=c++11  -I/usr/local/opt/openssl/include/  -lPocoFoundation \
+	-lPocoCrypto -lPocoJSON -o decrypt_encrypt_user_json
+- decrypt user json by running executable created in above step:
+  $ ./decrypt_encrypt_user_json dec <user_json_info_file> \
+	<input>  <output>
+  <input> is the encrypted user json, <output> is a filename where decrypted
+  user json will be saved.
+- encrypt user json by running executable created in first step:
+  $ ./decrypt_encrypt_user_json enc <user_json_info_file> \
+	<input>  <output>
+  <input> is the decrypted user json, <output> is a filename where encrypted
+  user json will be saved.
+
+Bash way
+- decrypt
+  $ ./decrypt_user_json.sh <user_json_info> <encrypted_user_json> <out_file>
+- encrypt
+  $ ./encrypt_user_json.sh <user_json_info> <decrypted_user_json> <out_file>
+

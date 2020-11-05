@@ -1,0 +1,241 @@
+<config>
+        <!-- Config file version -->
+        <version>1</version>
+        <!--
+                "7080 - 7500" ports for acceptance tests only
+                "7070 - 7079" ports for Leviathan peers configuration
+                "8000 - 8100" ports for experimental purposes
+        -->
+        <!--
+             specify negative number in metax_port to tell Metax that you don't
+             need to run socket server for peer connections. Peers will not be
+             able to connect to you in this case, but you can still connect to
+             others.
+        -->
+        <metax_port>7080</metax_port>
+        <web_server_port>7081</web_server_port>
+
+        <!-- Use ssl socket for peer connection.
+             If true than:
+             1. only ssl socket connections are allowed from peers on
+                metax_port.
+             2. Metax will try to connect to its peers mentioned in <peers> tag
+                also via ssl socket -->
+        <peer_use_ssl>true</peer_use_ssl>
+        <!-- Uncomment https_certificate or leave the value empty to
+             fallback to insecure http connection. Both private key
+             and certificate can be in one file, specify the path of
+             same file path in this case-->
+        <!--https_certificate>
+                <private_key>$test_dir/server.pem</private_key>
+                <certificate>$test_dir/server.pem</certificate>
+        </https_certificate-->
+        <!--
+            UUID of sitemap. It will be loaded by webserver from Metax before
+            starting webserver.
+            Using sitemap you can get files from Metax by any convenient name,
+            e.g. https://ggg.leviathan.am/index.html
+            sitemap has the following format:
+            {
+                "ggg.leviathan.am": {
+                        "/index.html": "<uuid1>",
+                        "/contacts.html": "<uuid2>"
+                }
+            }
+        -->
+        <!--sitemap>d8c957de-5eca-46cc-88be-cb31ba7d3d8b</sitemap-->
+ 
+
+        <!-- Uncomment the lines below to change the default paths.
+             WARNING: Do not uncomment and leave the path empty -->
+        <storage>
+            <path>$test_dir/storage1/</path>
+            <!-- Cache size limit should be specified only in GB -->
+            <cache_size_limit>5</cache_size_limit>
+            <!-- Files in cache older than specified time will be removed.
+                 The time should be specified in minutes. It can be fractional,
+                 e.g. 0.5 means 30 seconds. The value 0 means ignore cache age
+                 and clean up cache only by max cache size limit.-->
+            <cache_age>2</cache_age>
+            <!-- Accepts 0-2 integer values for save requests:
+                2 – all save requests from peers will be accepted with an offer,
+                    save requests from local web api will be forwarded to peers
+                    and a copy of data will be saved into local storage
+                1 – all save requests from peers will be refused,
+                    save requests from local web api will be forwarded to peers
+                    and a copy of data will be saved into local storage
+                0 – all save requests from peers will be refused,
+                    save requests from local web api will be forwarded to peers
+                    (NO copy of data will be saved into local storage) -->
+            <storage_class>2</storage_class>
+            <!-- Accepts 0-1 integer values for sync process:
+                    1 – all uuids which are updated starting from last seen
+                        time of each peer will be synchronized within peers.
+                    0 – all uuids existing in the own storage will be
+                        synchronized appropriately from all peers. -->
+            <sync_class>0</sync_class>
+            <!--
+                true - save stream requests from peers will be accepted with
+                       an offer
+                false - save stream requests will be refused -->
+            <enable_livestream_hosting>true</enable_livestream_hosting>
+            <!-- Number of copies (including own storage) that kernel will try
+                 to make for each saved uuid. -->
+            <data_copy_count>4</data_copy_count>
+            <!--
+                 Storage size limit should be specified only in GB.
+                 Negative value means unlimited storage.
+                 The number can be floating point number, e.g. 0.1 means limit
+                 of 100MB.
+            -->
+            <size_limit>-1</size_limit>
+        </storage>
+        <device_key_path>$test_dir/keys1/device</device_key_path>
+        <user_key_path>$test_dir/keys1/user</user_key_path>
+        <device_json>$test_dir/device1.json</device_json>
+        <user_json_info>$test_dir/keys1/user_json_info.json</user_json_info>
+        <metax_user_info>$test_dir/metax_user_info1.json</metax_user_info>
+        <metax_device_info>$test_dir/metax_device_info1.json</metax_device_info>
+        <!--
+             Timer in seconds to dump user and device json files. Please
+             specify integral number, otherwise Metax will fallback to the
+             default value (5 seconds). 0 value will not start the timer.
+        -->
+        <metadata_dump_timer>5</metadata_dump_timer>
+        <router>
+                <!-- Maximum hop count of tender.
+                     Should be positive integer grater than 0. -->
+                <max_hops>4</max_hops>
+                <!-- Path of peers rating configuration file. It should contain
+                     rating information about peers by the following format:
+                     {
+                        "device_id1": {"rating": <integer>},
+                        "device_id2": {"rating": <integer>},
+                        ...
+                     }
+                -->
+                <peers_rating>$test_dir/peers_rating1.json</peers_rating>
+                <!-- Default value of peers rating. This value is used for the
+                     peers which rating is not specified in peers rating
+                     configuration file. Should be integer from 0-100 range.
+                -->
+                <peers_default_rating>100</peers_default_rating>
+
+                <!-- This is a time in seconds for computation of tender
+                     expiration time.
+                     The expiration time is peer_response_wait_time * max_hops.
+                -->
+                <peer_response_wait_time>30</peer_response_wait_time>
+
+                <!-- Maximum total size (in bytes) of save/update requests data
+                     kernel will push to router for sending to peers at once.
+                -->
+                <router_save_queue_size>21000000</router_save_queue_size>
+
+                <!-- Maximum total size (in bytes) of data kernel will request
+                     router for sending to peers at once.
+                -->
+                <router_get_queue_size>21000000</router_get_queue_size>
+        </router>
+        <!-- true - enables save/update requests from any host,
+             false - save/update allowed only if host part of the request is
+                     "localhost" or "127.0.0.1" -->
+        <enable_non_localhost_save>false</enable_non_localhost_save>
+
+        <!-- true - enables get requests from any host,
+             false - get allowed only if host part of the request is
+                     "localhost" or "127.0.0.1" -->
+        <enable_non_localhost_get>true</enable_non_localhost_get>
+
+        <!--
+            List of peers to connect each within a <peers> tag with
+            host:port format.
+            If a list of peers are enclosed in <balancer> tag then Metax will
+            stay connected to only of those peers.
+            The least loaded peer (based on number of peers ) is chosen, e.g.
+                <peer>host1:port</peer>
+                <balancer>
+                        <peer>host2:port</peer>
+                        <peer>host3:port</peer>
+                </balancer>
+            host1:port peer will be connected unconditially, but only one of
+            host2:port and host3:port connections will be held.
+        -->
+        <peers>
+                <peer>127.0.0.1:7090</peer>
+        </peers>
+        <!--
+            Path where friends public keys and associated friend names are kept
+            It is an array, each element format is:
+            {"name":"<name_of_the_friend>",
+            "public_key":"<friends_public_key>"}
+        -->
+        <!--friends_config>$HOME/.leviathan/friends.json</friends_config-->
+
+        <!--
+            Possible values:
+                strict - drops connection if peer verification fails (default)
+                relaxed - same as none, reserved for future use
+                none - keeps connection without verifying
+        -->
+        <peer_verification_mode>none</peer_verification_mode>
+        <!--
+            Path where trusted peers information is kept.
+            It is a json object with the following format:
+            {"<md5_of_device_public_key>":{
+            "device_key":"<peer_device_public_key>",
+            "user_key":"<user_public_key_of_peer>"}}
+        -->
+        <!--trusted_peers_config>$HOME/.leviathan/trusted_peers.json</trusted_peers_config-->
+    <!-- Logging configuration start -->
+    <logging>
+        <channels>
+            <!-- Splitter channel configuration -->
+            <splitter>
+                <class>SplitterChannel</class>
+                <channels>file_channel</channels>    
+                <pattern>%p %Y-%m-%d %L%H:%M:%S.%i %s: %t</pattern>
+            </splitter>
+            <!-- File channel configuration -->
+            <file_channel>
+                <class>FileChannel</class>
+                <path>leviathan1.log</path>
+                <rotation>50M</rotation>
+                <archive>timestamp</archive>
+                <times>local</times>
+                <compress>true</compress>
+                <purgeAge>1months</purgeAge>
+            </file_channel>
+            <!-- Console channel configuration -->
+            <console_channel>
+                <class>ColorConsoleChannel</class>
+            </console_channel>
+        </channels>
+        <!-- Loggers configuration start -->
+        <loggers>
+            <metax_web_api>
+                <name>metax_web_api</name>
+                <channel>splitter</channel>
+                <!-- none - TODO, fatal - TODO, critical -TODO, error - TODO, warning - TODO,
+                     notice - TODO, information - TODO, debug - TODO, trace - TODO -->
+                <level>trace</level>
+            </metax_web_api>
+            <metax>
+                <name>metax</name>
+                <channel>splitter</channel>
+                <!-- none - TODO, fatal - TODO, critical -TODO, error - TODO, warning - TODO,
+                     notice - TODO, information - TODO, debug - TODO, trace - TODO -->
+                <level>trace</level>
+            </metax>
+            <!-- Example how to configure kernel logging
+            <kernel_logger>
+                <name>metax.kernel</name>
+                <channel>splitter</channel>
+                <level>trace</level>
+            </kernel_logger>
+            -->
+        </loggers>
+        <!-- Loggers configuration end -->
+    </logging>
+    <!-- Logging configuration end -->
+</config>

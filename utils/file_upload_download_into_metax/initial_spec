@@ -1,0 +1,51 @@
+
+
+1. https://yerevan.instigate.am:7071/db/get/?id=<FILE_TRASFER_HTML_UUID>
+
+
+    Welcome to Metax File Trasfer:
+
+    Step 1: select file to upload
+    [                  ] <UPLOAD>
+
+
+    On <UPLOAD>
+
+        0) parse URL, and get the tailing UUID (i.e. FILE_TRANSFER_UUID)-> UUID0
+
+        1) save the file into Metax and get the UUID -> UUID1 
+
+    Step 2: uploading ...
+        
+        2) get the data (file name/path/link/alias from local directory) and
+           use it to create a JSon string:
+        
+        <html>
+        <script>
+        { 
+            app: { 
+                uuid: UUID0
+                name: Metax File Transfer
+                version: 0.1
+            }
+            data: {
+                file_uuid: UUID1
+                file_mime: MIME
+                file_name: basename(fileargument. e.g. cut-it-short-0.1.apk) -> FN
+            }
+        }
+        function download() { use MIME & FN & UUID1 to implement the Download buttone)
+        </script>
+        <body>
+            File: "FN"
+            [Download]
+        <body>
+
+        3) upload that JSON string/file into Metax and get UUID -> UUID2
+
+    Step3: take the URL and transfer it to your correspondent for download
+    
+        https://yerevan.instigate.am:7071/db/get/?id=UUID2
+
+            
+

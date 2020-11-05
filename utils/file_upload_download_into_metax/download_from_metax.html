@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- 
+vim: tabstop=8:shiftwidth=8:expandtab 
+-->
+<html>
+        <head>
+                <meta charset="utf-8"/>
+                <title>Metax File Transfer</title>
+                <script src="/db/get?id=02ee056a-654c-45f0-a26f-59acd157ca74"></script>
+        </head>
+        <body>
+                <h1>Welcome to Metax File Transfer</h1>
+                <p id="file_data"></p><br />
+
+                <script>
+
+                var data_get_url = document.location.origin + "/db/get?id=";
+                window.onload = function() {
+                        var uuid = window.location.href.split('#')[1];
+                        var url = data_get_url + uuid;
+                        $.ajax({
+                                type: 'get',
+                                url: url,
+                                dataType: 'json',
+                                success: function(file_info) {
+                                        getFileInfo(file_info.data);
+                                        
+                                        var download_link = $('<a></a>')
+                                                            .attr('href', data_get_url + file_info.data.file_uuid)
+                                                            .attr('download', file_info.data.file_name)
+                                                            .attr('id', "download")
+                                                            .text("Download");
+
+                                        $("body").append(download_link);
+
+                                        var anchorElements = document.getElementsByTagName('a');
+                                        var ua = window.navigator.userAgent;
+
+                                        for (var i in anchorElements) {
+                                                anchorElements[i].onclick = function() {
+                                                        if (navigator.msSaveBlob) { // IE10+ : (has Blob, but not a[download] or URL)
+                                                                var x=new XMLHttpRequest();
+                                                                x.open( "GET", data_get_url + file_info.data.file_uuid , true);
+                                                                x.responseType="blob";
+                                                                x.onload= function(e) {
+                                                                        navigator.msSaveBlob(e.target.response, file_info.data.file_name);
+                                                                };
+                                                                x.send();
+                                                                return false;
+                                                        } else {
+                                                                return true;
+                                                        }
+                                                }
+                                        }
+
+
+                                },
+                                error: function(e) {
+                                        if (e && e.responseText && 
+                                            JSON.parse(e.responseText).error &&           
+                                            JSON.parse(e.responseText).error == "Decryption failed") {
+                                        
+                                                var errorText = $('<p></p>')
+                                                                .css("color", "red")
+                                                                .html(" You don't have permissions to see the encryped file.");
+                                                $("body").append(errorText);
+                                        
+                                        
+                                        }
+                                }
+                        });
+                }
+
+                function formatSizeUnits(bytes){
+                        if      (bytes>=1073741824) {bytes=(bytes/1073741824).toFixed(2)+' GB';}
+                        else if (bytes>=1048576)    {bytes=(bytes/1048576).toFixed(2)+' MB';}
+                        else if (bytes>=1024)       {bytes=(bytes/1024).toFixed(2)+' KB';}
+                        else if (bytes>1)           {bytes=bytes+' bytes';}
+                        else if (bytes==1)          {bytes=bytes+' byte';}
+                        else                        {bytes='0 byte';}
+                        return bytes;
+                }
+
+                function getFileInfo(file_data) {
+                        var doc = document.getElementById('file_data');
+                        doc.innerHTML =
+                                "Name: " + file_data.file_name + "<br/>" +
+                                "Size: " + formatSizeUnits(file_data.file_size) + "<br/>" + 
+                                "URL:  " + data_get_url + file_data.file_uuid; + "<br/>";
+                }
+
+                </script>
+        </body>
+</html>

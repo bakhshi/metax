@@ -1,0 +1,80 @@
+
+
+struct adder : csp::task {
+    csp::fifo<int> *i0, *i1, *o;
+    void run() { // virtual
+        while (true) {
+            csp::task::wait(i0);
+            csp::task::wait(i1);
+            o->push(i1->front() + *i2->front());
+            i0->pop();
+            i1->pop();
+        }
+    }
+};
+
+struct multiplier : csp::task {
+    csp::fifo<int> *i0, *i1, *o;
+    void run() { // virtual
+        while (true) {
+            csp::task::wait(i0);
+            csp::task::wait(i1);
+            o->push(i1->front() * *i2->front());
+            i0->pop();
+            i1->pop();
+        }
+    }
+};
+
+
+struct reader : csp::task {
+    csp::fifo<int> *o;
+    std::ifstream f;
+    reader(const std::string s) : f(s) {}
+    void run() { // virtual
+        int x;
+        while (f>>x) {
+            o->push(x); 
+        }
+    }
+}
+
+struct writer : csp::task {
+    csp::fifo<int> *i;
+    std::ofstream f;
+    reader(const std::string s) : f(s) {}
+    void run() { // virtual
+        while (true) {
+            wait(i);
+            f << i->top();
+            i->pop();
+        }
+    }
+}
+
+while(true) {
+    wait(l2->rx, cm->l3_ctl, ...);
+    if (i2->rx) {
+        handle_i2_rx();
+    }
+}
+
+int main()
+{
+    create_router_module_1(c1, c2, c3);
+        reader a,b,c,d; 
+        writer y; // y = (a+b)*(c+d)
+        adder a1, a2;
+        multiplier m;
+        csp::fifo<int> ca, cb, cc, cd, ca1, ca2, cm;
+        a.o = a1.i0 = &ca; 
+        b.o = a1.i1 = &cb;
+        c.o = a2.i0 = &cc;
+        d.o = a2.i1 = &cd;
+        a1.o = m.i1 = &ca1;
+        a2.o = m.i2 = &ca2;
+        m.o = y.i = &cm;
+    csp::start(); 
+    when_gui_exits( csp::stop() );
+    return 0;
+}

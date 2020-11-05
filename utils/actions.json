@@ -1,0 +1,420 @@
+{
+  "00000000-0000-0000-0000-000000000001": {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:453:310:127:54",
+    "title": {
+      "value": "Root",
+      "view": "1:11:11:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:0:0:0:0"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:0:0:0:0"
+    },
+    "script": "",
+    "tags": [
+      ""
+    ],
+    "created": 1442214142769,
+    "updated": 1489058842134,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000002": {
+    "id": "00000000-0000-0000-0000-000000000002",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:453:310:127:54",
+    "title": {
+      "value": "Script",
+      "view": "1:11:11:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:0:0:0:0"
+    },
+    "script": "//Script\n// Edit functionality.\nvar _edit = null; \n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        var node = _edit.clicked_node;\n        var edit_script = _edit.initEditDialog('Script');\n        var cm_div = $('<div class=\"cm\" style=\"z-index:20000000;' +\n                       'width:100%;height:100%;\"><textarea></textarea>');\n        edit_script.find('.wrap').append(cm_div);\n        _edit.addSaveNode(saveHandler);\n        set_code_mirror_options(cm_div.find('textarea')[0]);\n    });\n};\n\nvar set_code_mirror_options = function(txtArea) {\n    var node = _edit.clicked_node;\n    txtArea.value = node.attributes().script;\n    var codeMirror = CodeMirror.fromTextArea(txtArea, {\n        mode : 'javascript',\n        tabMode : 'indent',\n        keyMap: 'vim',\n        matchBrackets: true,\n        showCursorWhenSelecting: true,\n        tabSize : 4,\n        indentUnit: 4\n    });\n    codeMirror.setOption('extraKeys', {\n        Tab: function(cm) {\n            var spaces = Array(cm.getOption('indentUnit') + 1).join(' ');\n            cm.replaceSelection(spaces);\n        }\n    });\n    codeMirror.setSize('100%', '100%');\n    codeMirror.setValue(node.attributes().script);\n};\n\nvar saveHandler = function() {\n    var node = _edit.clicked_node;\n    var cm_div = $('#v-edit').find('.cm');\n    node.attributes().script = cm_div.find('textarea')[0].value;\n    var rootURI = window.vostan.getRootURI();\n    var rootNode = _vmap.nodeByURI(rootURI);\n    rootNode.modified = true;\n    //_edit.updateInfo(node);\n    _edit.ignore_escape(false);\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489058842134,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000003": {
+    "id": "00000000-0000-0000-0000-000000000003",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:440:254:136:59",
+    "title": {
+      "value": "Title",
+      "view": "1:12:19:107:25"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "<p><br></p>",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Title\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\n// Update action style.\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerClickEvent() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        var attr = nodeObj.attributes();\n        var title = attr.title;\n        title.visible = ! title.visible;\n        _edit.updateActionTitle(_this, title.visible);\n        _this.setTitleStyles();\n        nodeObj.setTitleStyles();\n        var visible = title.visible ? 1 : 0;\n        if (nodeObj.isRoot()) {\n            attr['title']['value'] = title.value;\n        }\n        attr['title']['visible'] = visible;\n        //nodeObj.modified = true;\n        var rootURI = window.vostan.getRootURI();\n        var rootNode = _vmap.nodeByURI(rootURI);\n        rootNode.modified = true;\n    });\n};\n\n// main function.\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClickEvent();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489058872258,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000004": {
+    "id": "00000000-0000-0000-0000-000000000004",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:450:257:140:56",
+    "title": {
+      "value": "Icon",
+      "view": "1:32:16:81:32"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "<p><br></p>",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Icon\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        var nodeObj = _edit.clicked_node;\n        var img = nodeObj.attributes().img; \n        img.visible = ! img.visible;\n        _edit.updateActionTitle(_this, img.visible);\n        _this.setTitleStyles();\n        nodeObj.setImageStyles();\n        if (! img.left || ! img.top || ! img.width || ! img.height) {\n            img['left'] = \"0\";\n            img['top'] = \"20\";\n            img['width'] = \"140\";\n            img['height'] = \"50\";\n        }\n        var visible = img.visible ? 1 : 0;\n        img[\"visible\"] = visible;\n        //nodeObj.modified = true;\n        var rootURI = window.vostan.getRootURI();\n        var rootNode = _vmap.nodeByURI(rootURI);\n        rootNode.modified = true;\n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489058894913,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000005": {
+    "id": "00000000-0000-0000-0000-000000000005",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:482:274:131:53",
+    "title": {
+      "value": "Text",
+      "view": "1:37:15:49:23"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "<p><br></p>",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Text\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        var nodeObj = _edit.clicked_node;\n        var txt = nodeObj.attributes().txt; \n        txt.visible = ! txt.visible;\n        //nodeObj.modified = true;\n        _edit.updateActionTitle(_this, txt.visible);\n        _this.setTitleStyles();\n        nodeObj.setElTextAttrs();\n        if (! txt.left || ! txt.top || ! txt.width || ! txt.height) {\n            txt['left'] = \"10\";\n            txt['top'] = \"20\";\n            txt['width'] = \"140\";\n            txt['height'] = \"50\";\n        }\n        var visible = txt.visible ? 1 : 0;\n        txt['visible'] = visible;\n        //nodeObj.modified = true;\n        var rootURI = window.vostan.getRootURI();\n        var rootNode = _vmap.nodeByURI(rootURI);\n        rootNode.modified = true;\n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489058920992,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000006": {
+    "id": "00000000-0000-0000-0000-000000000006",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:485:242:125:55",
+    "title": {
+      "value": "Edit Title",
+      "view": "1:28:19:81:31"
+    },
+    "img": {
+      "value": "",
+      "view": "0:10:10:40:40"
+    },
+    "txt": {
+      "value": "<p><br></p>",
+      "view": "0:10:50:230:40"
+    },
+    "script": "//Edit Title\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction updateTitleValue(new_value) {\n    var nodeObj = _edit.clicked_node;\n    var title = nodeObj.attributes().title; \n    title.value = new_value;\n    nodeObj.setTitleStyles();\n    var rootURI = window.vostan.getRootURI();\n    var rootNode = _vmap.nodeByURI(rootURI);\n    rootNode.modified = true;\n};\n\nfunction setEditInfoStyle(edit_info) {\n    var title = _edit.clicked_node.attributes().title; \n    edit_info.css({\n        \"padding\" : \"3px\",\n        \"font-size\" : _edit.clicked_node.$el.find(\".info\").css(\"font-size\"),\n        \"position\" : \"absolute\",\n        \"width\" : title.width,\n        \"left\" : title.left,\n        \"top\" : title.top,\n        \"z-index\" : 4600\n    });\n};\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        _edit.hideEditingStyle();\n        var edit_info = $('<input class=\"edit-info\" type=\"text\">'); \n        _edit.clicked_node.$el.find(\".view:first\").append(edit_info);\n        setEditInfoStyle(edit_info);\n        edit_info.keyup(function(e) {\n            e.stopImmediatePropagation();\n            e.stopPropagation();\n            if (e.keyCode == 13) {\n                updateTitleValue(edit_info.val());\n                edit_info.remove();\n                _edit.clicked_node.$el.find('.info').show();\n            }\n        }).click(function(e) {\n            e.stopImmediatePropagation();\n            e.stopPropagation();\n        });\n        edit_info.val(_edit.clicked_node.attributes().title.value).focus();\n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489059041389,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000007": {
+    "id": "00000000-0000-0000-0000-000000000007",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:616:221:145:66",
+    "title": {
+      "value": "Add",
+      "view": "1:21:19:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Add\n// Edit functionality.\nvar _edit = null;\nvar root = window.vostan.getRootURI();\nvar _hostLeviathan = root.domain + \":\" + root.port;\nvar newUUID = \"ffffffff-ffff-ffff-ffff-ffffffffffff\";\nmain();\n\n// Update action style.\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerClickEvent() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        sendAddNodeReq();\n    });\n};\nfunction getNodeDefaultAttr(parentNodeObj) {\n    var new_node = {};\n    new_node['id'] = newUUID;\n    new_node['uuid'] = newUUID;\n    new_node['enc'] = parentNodeObj.attributes().enc || '0';\n    new_node['view'] = '1:460:270:160:70';\n    new_node['title'] = {};\n    new_node['title']['value'] = 'New Node';\n    new_node['title']['view'] = '1:30:20:100:30';\n    new_node['txt'] = {};\n    new_node['txt']['value'] = \"\";\n    new_node['txt']['view'] = \"0\";\n    new_node['img'] = {};\n    new_node['img']['value'] = \"\";\n    new_node['img']['view'] = \"0\";\n    new_node['script'] = \"\";\n    new_node['tags'] = [];\n    new_node['in'] = [];\n    new_node['out'] = [];\n    new_node['layout'] = [];\n    new_node['created'] = (new Date()).getTime();\n    new_node['updated'] = 0;\n    new_node['saved'] = 0;\n    new_node['deleted'] = 0;\n    new_node['moved'] = {};\n    new_node['moved']['date'] = 0;\n    new_node['moved']['domain'] = \"\";\n    new_node['moved']['id'] = \"\";\n    return new_node;\n};\nfunction createNode(parentNodeObj) {\n    var new_node = {};\n    new_node = getNodeDefaultAttr(parentNodeObj);\n    return new_node;\n};\nfunction appendNewNode(parentNodeObj, newNodeData, res) {\n    var link = _edit.getLinkJson(parentNodeObj, newNodeData, 10);\n    var newNodeObj = _edit.appendNode(parentNodeObj.uri(), newNodeData,\n                                      link, parentNodeObj.attributes()); \n    var oldID = newNodeObj.attributes()[\"id\"]\n                || newNodeObj.attributes()[\"uuid\"];\n    newNodeObj.attributes()[\"uuid\"] = res[\"uuid\"];\n    newNodeObj.attributes()[\"id\"] = res[\"uuid\"];\n    newNodeData[\"uuid\"] = res[\"uuid\"];\n    newNodeData[\"id\"] = res[\"uuid\"];\n    _edit.updateAddedChildInfo(newNodeObj, oldID, newNodeData);\n    parentNodeObj.modified = true;\n};\nfunction sendAddNodeReq() {\n    var parentNodeObj = _edit.clicked_node;\n    var url = _hostLeviathan + \"/db/save/node?enc=\"\n              + (parentNodeObj.attributes().enc || '0');\n    var newNodeData = createNode(parentNodeObj);\n    $.ajax({\n        type : 'POST',\n        url : url,\n        dataType : 'json',\n        contentType : 'application/json',\n        data : JSON.stringify(newNodeData),\n        success : function(data) {\n            debugger;\n            if(data && ! data['error']) {\n                console.log('Added new node ' + data.uuid);\n                appendNewNode(parentNodeObj, newNodeData, data);\n            }\n        },\n        error : function(xhr) {\n            console.log('Error in Add new node', xhr);\n        },\n        complete : function(xhr) {\n            console.log('Complete in Add new node', xhr);\n        }\n    });\n};\n\n// main function.\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClickEvent();\n};",
+    "tags": [],
+    "created": 1442215610688,
+    "updated": 1489059084573,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000008": {
+    "id": "00000000-0000-0000-0000-000000000008",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:506:212:160:70",
+    "title": {
+      "value": "Upload",
+      "view": "1:29:20:100:30"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Upload\n// Edit functionality.\nvar _edit = null;\nvar root =  window.vostan.getRootURI();\nvar _hostLeviathan = root.domain + \":\" + root.port;\nvar db_get = '/db/get?id=';\nvar db_save_data = '/db/save/data?enc=0';\nvar db_save_node = '/db/save/node?enc=0';\nvar hidedChooseFile = $('<input type=\"file\" id=\"hided-choose-file\"/>');\n\nmain();\n\n// Update action style.\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction chooseFileChange() {\n    hidedChooseFile.bind(\"change\", function(e) {\n        //TODO: Handle if selected more than one file to upload\n        var formdata = new FormData();\n        var fileinfo = {};\n        formdata.append(1, this.files[0]);\n        fileinfo.name = e.currentTarget.files[0].name;\n        fileinfo.size = e.currentTarget.files[0].size;\n        fileinfo.type = e.currentTarget.files[0].type;\n        fileinfo.lastModified = e.currentTarget.files[0].lastModified;\n        fileinfo.path = URL.createObjectURL(e.currentTarget.files[0]);\n        var isSVG = (-1 != (fileinfo.type).indexOf('svg+xml'));\n        var data = null;\n        if (isSVG) {\n            var reader = new FileReader();\n            reader.onload = function () {\n                data = this.result;\n                saveLeviathanRequest(data, fileinfo, isSVG);\n            };\n            reader.readAsDataURL(this.files[0]);\n        } else {\n            saveLeviathanRequest(formdata, fileinfo);\n        }\n    });\n}\n\nfunction saveLeviathanRequest (formdata, fileinfo, svg) {\n    var url = _hostLeviathan + (svg ? db_save_node : db_save_data);\n    $.ajax({\n        type : 'POST',\n        url : url,\n        cache: false,\n        contentType: false,\n        processData: false,\n        dataType: \"json\",\n        data: formdata,\n        success : function(data) {\n            if(data && ! data['error']) {\n                debugger;\n                var msg = \"Saved \" + fileinfo.name + \" by uuid: \" + data.uuid;\n                console.log(msg);\n                alert(msg);\n                var nodeObj = _edit.clicked_node;\n                var attr = nodeObj.attributes();\n                var title = attr['title'];\n                title.value = title.value ? title.value : fileinfo.name;\n                var img = attr['img'];\n                img.visible = '1';\n                //img.value = _hostLeviathan + db_get + data.uuid;\n                img.value = data.uuid;\n                attr['tags'] = (attr['tags'] ? attr['tags'] + ',' : '' )\n                               + fileinfo.type;\n                \n                var rootURI = window.vostan.getRootURI();\n                var rootNode = _vmap.nodeByURI(rootURI);\n                rootNode.modified = true;\n                //Updates the added node id in its own json\n                _edit.updateInfo(nodeObj);\n            }\n        },\n        error : function(xhr) {\n            console.error();\n            var msg = \"Failed save \" + this.url;\n            console.log(msg + \", \" + xhr);\n            alert(msg);\n        }\n    });\n};\n\n\nfunction registerClickEvent() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        hidedChooseFile.click();\n    });\n    chooseFileChange();\n};\n\n// main function.\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClickEvent();\n};\n",
+    "tags": [],
+    "created": 1442215610688,
+    "updated": 1490955742619,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000009": {
+    "id": "00000000-0000-0000-0000-000000000009",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:501:183:154:66",
+    "title": {
+      "value": "Hide",
+      "view": "1:29:21:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "script": "//Hide\n// Edit functionality.\nvar _edit = null;\nvar root = window.vostan.getRootURI();\n\nmain();\n\n// Update action style.\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerClickEvent() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        nodeObj.modified = true;\n        _edit.hideNode(nodeObj);\n    });\n};\n\n// main function.\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClickEvent();\n};",
+    "tags": [],
+    "created": 1442215610688,
+    "updated": 1489059218985,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000010": {
+    "id": "00000000-0000-0000-0000-000000000010",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:538:255:127:54",
+    "title": {
+      "value": "Tags",
+      "view": "1:12:13:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:0:0:0:0"
+    },
+    "script": "//Tags\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nvar resetSearchBox = function() {\n    try{\n        if ($(\"#vostanNodeToggle\")[0]) {\n            $(\"#vostanNodeToggle\").val('');\n            $('#vostanNodeToggle').autocomplete('close');\n        }\n    } catch(e) {\n        console.log(e);\n    }\n};\n\nfunction saveHandler() {\n    var nodeObj = _edit.clicked_node;\n                                    \n    var tagAttrVal = \"\";\n    var attr = nodeObj.attributes();\n    var editStage = $('#edit-dialog');\n    $.each(editStage.find('.tagit-choice'), function() {\n        var tag = $(this).find('.tagit-label');\n        tagAttrVal += tag.text() + \",\";\n    });\n    var extraTag = editStage.find(\"#inputSingleField\").val();\n    if (extraTag != \"\") {\n        tagAttrVal += extraTag;\n        attr.tags = tagAttrVal;\n    } else {\n        attr.tags = tagAttrVal.slice(0, -1);\n    }\n    nodeObj.setTagsStyles();\n    attr.tags = attr.tags.replace(/ /g, '');\n    if (_edit) {\n        _edit.ignore_escape(false);\n    }\n};\n\nfunction bindTagClose (editStage, field) {\n    // bind click to tag item close element to remove tag item\n    editStage.on('click', field, function(e) {\n        $(this).parent().fadeOut(\"fast\", function() {\n            $(this).remove();\n        });\n    });\n};\n\nfunction dragTags (tags) {\n    tags.sortable({\n        containment: \"parent\",\n        scroll: false,\n        items: \"li:not(.tagit-new)\",\n        dropOnEmpty: false,\n        start: function() {\n            $(this).addClass(\"tag-drag\");\n        },\n        stop: function() {\n            $(this).removeClass(\"tag-drag\");\n        }\n    });\n};\n\n// Edit Tags\nfunction renderTags (node) {\n    var tmpVal = null;\n    if ( (node.attributes().tags).constructor === Array) {\n        tmpVal = node.attributes().tags;\n    } else {\n        tmpVal = node.attributes().tags.split(',');\n    }\n    var tagVal = \"\";\n    if (tmpVal != \"\") {\n        $.each(tmpVal, function(i, l) {\n         tagVal += '<li class=\"tagit-choice\"><span class=\"tagit-label\">'\n             + $.trim(l) + '</span><a class=\"tagit-close\">' +\n             '<span class=\"text-icon\">×</span></a></li>';\n        });\n    }\n    var editTags = $('<input type=\"text\" class=\"edit-tag\"' +\n                    ' id=\"inputSingleField\"' + 'value=\"\"/>')\n                  .css({\n                      \"width\": 550\n                  });\n    var tagitNew = $('<li class=\"tagit-new\"></li>')\n                   .append(editTags);\n    var tagField = $('<ul class=\"singleFieldTags\"></ul>')\n                   .css({\n                       \"width\": 560,\n                       \"margin-left\": 15\n                   })\n                   .append(tagVal)\n                   .append(tagitNew);\n    //TODO: Replace edit stage size appropriate for tags editing\n    var editStage = _edit.initEditDialog('Tags');\n    editStage.find('.wrap').append(tagField);\n    bindTagClose(editStage, '.tagit-close');\n    var tagsList = editStage.find('.singleFieldTags');\n    dragTags(tagsList);\n    _edit.addSaveNode(saveHandler);\n    $(\"#vostanEditStage\").show();\n};\n\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        renderTags(nodeObj); \n        var rootURI = window.vostan.getRootURI();\n        var rootNode = _vmap.nodeByURI(rootURI);\n        rootNode.modified = true;\n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [],
+    "created": 1442214142769,
+    "updated": 1489059328639,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000011": {
+    "id": "00000000-0000-0000-0000-000000000011",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:588:262:127:54",
+    "title": {
+      "value": "Edit Text",
+      "view": "1:22:12:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:0:0:0:0"
+    },
+    "script": "//Edit Text\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nvar resetSearchBox = function() {\n    try{\n        if ($(\"#vostanNodeToggle\")[0]) {\n            $(\"#vostanNodeToggle\").val('');\n            $('#vostanNodeToggle').autocomplete('close');\n        }\n    } catch(e) {\n        console.log(e);\n    }\n};\n\nfunction saveTxtHandler() {\n    var nodeObj = _edit.clicked_node;\n    var attr = nodeObj.attributes();\n    attr.txt['value'] = tinymce.activeEditor\n               && tinymce.activeEditor.getContent({ format : 'raw' }) || \"\";\n    nodeObj.setElTextAttrs();\n};\n\nfunction renderText (node) {\n    var editTxt = $('<textarea rows=\"5\" id=\"edit-text-area\"' +\n                    'class=\"edit-txt \"></textarea>')\n                  .val(node.attributes().txt['value']);\n    var editStage = _edit.initEditDialog('Tags');\n    editStage.find('.wrap').append(editTxt);\n\n    $(\".edits\").find(\".par\").css(\"padding-left\", 9);\n    tinymce.init({\n        auto_focus : \"edit-text-area\",\n        selector : \"textarea.edit-txt\",\n        plugins : [\n            \"advlist autolink lists link image charmap print preview anchor\",\n            \"searchreplace visualblocks code fullscreen\",\n            \"insertdatetime table contextmenu paste\"\n        ],\n        toolbar : \"insertfile undo redo | styleselect | bold italic |\" +\n                  \"alignleft aligncenter alignright alignjustify |\" +\n                  \"bullist numlist outdent indent | link image\",\n        extended_valid_elements : \"flag[class]\",\n        height: 338,\n        width: 650\n    });    \n    _edit.addSaveNode(saveTxtHandler);\n};\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        renderText(nodeObj); \n        var rootURI = window.vostan.getRootURI();\n        var rootNode = _vmap.nodeByURI(rootURI);\n        rootNode.modified = true;\n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};\n",
+    "tags": [],
+    "created": 1442214142769,
+    "updated": 1489059361762,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000012": {
+    "id": "00000000-0000-0000-0000-000000000012",
+    "enc": "0",
+    "domain": "",
+    "view": "1:588:262:127:54",
+    "title": {
+      "value": "Place",
+      "view": "1:22:12:100:20",
+      "view_mp": "1:22:12:100:20"
+    },
+    "img": {
+      "value": "",
+      "view": "0:NaN:NaN:NaN:NaN",
+      "view_mp": "0:NaN:NaN:NaN:NaN"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:0:0:0:0",
+      "view_mp": "0:0:0:0:0"
+    },
+    "script": "//Edit Place\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nvar resetSearchBox = function() {\n    try{\n        if ($(\"#vostanNodeToggle\")[0]) {\n            $(\"#vostanNodeToggle\").val('');\n            $('#vostanNodeToggle').autocomplete('close');\n        }\n    } catch(e) {\n        console.log(e);\n    }\n};\n\nfunction savePlaceHandler() {\n    var nodeObj = _edit.clicked_node;\n    var rootURI = window.vostan.getRootURI();\n    var rootNode = _vmap.nodeByURI(rootURI);\n    var p = $('#node-place').val();\n    var r = rootNode.attributes().raw;\n    debugger;\n    r['place' + window.l_ext] = r['place' + window.l_ext] || {};\n    r['place' + window.l_ext][nodeObj.attributes().id] = p;\n    rootNode.modified = true;\n};\n\nfunction renderPlace(nodeObj) {\n    var rootURI = window.vostan.getRootURI();\n    var rootNode = _vmap.nodeByURI(rootURI);\n    var r = rootNode.attributes().raw;\n    var p = r['place'  + window.l_ext]\n            && r['place'  + window.l_ext][nodeObj.attributes().id];\n    var editPlace = $('<input id=\"node-place\"/>').val(p || \"0,0,0,0\");\n    var editStage = _edit.initEditDialog('Edit Place');\n    editStage.find('.wrap').append(editPlace);\n    $('#node-place').css('width', '630px');\n    _edit.addSaveNode(savePlaceHandler);\n};\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        renderPlace(nodeObj); \n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [],
+    "created": 1442214142769,
+    "place": "0,0,0,0",
+    "updated": 1492094301861,
+    "layout": [],
+    "out": [],
+    "in": [],
+    "view_mp": "1:588:262:127:54",
+    "layout_mp": []
+  },
+  "00000000-0000-0000-0000-000000000013": {
+    "id": "00000000-0000-0000-0000-000000000013",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:485:242:125:55",
+    "title": {
+      "value": "Expand",
+      "view": "1:28:19:81:31",
+      "view_tv": "1:29:13:81:31"
+    },
+    "img": {
+      "value": "",
+      "view": "0:10:10:40:40",
+      "view_tv": "0:10:10:40:40"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:10:50:230:40",
+      "view_tv": "0:10:50:230:40"
+    },
+    "script": "// Edit Expandability\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\n// Update action style.\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nfunction registerClickEvent() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        debugger;\n        var node = _edit.clicked_node;\n        if (node.isRoot()) {\n            return;\n        }\n        var attr = node.attributes();\n        var l = attr.leaf;\n        l = ! l;\n        _edit.updateActionTitle(_this, ! l);\n        _this.setTitleStyles();\n        attr.leaf = l ? 1 : 0;\n        node.setLeafStyles();\n        var rootNode = _vmap.nodeByURI(window.vostan.getRootURI());\n        rootNode.modified = true;\n    });\n};\n\n// main function.\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerClickEvent();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1491829296927,
+    "layout": [],
+    "out": [],
+    "in": [],
+    "view_tv": "1:485:242:125:55",
+    "layout_tv": []
+  },
+  "00000000-0000-0000-0000-000000000014": {
+    "id": "00000000-0000-0000-0000-000000000014",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:485:242:125:55",
+    "title": {
+      "value": "Edit Icon",
+      "view": "1:28:19:81:31"
+    },
+    "img": {
+      "value": "",
+      "view": "0:10:10:40:40"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:10:50:230:40"
+    },
+    "script": "// Edit Icon\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nvar resetSearchBox = function() {\n    try{\n        if ($(\"#vostanNodeToggle\")[0]) {\n            $(\"#vostanNodeToggle\").val('');\n            $('#vostanNodeToggle').autocomplete('close');\n        }\n    } catch(e) {\n        console.log(e);\n    }\n};\n\nfunction saveIconHandler() {\n    var img_uuid = $(\"#edit-img\").val();\n    if (36 != img_uuid.length) {\n        alert(\"Typed image uuid is not valid.\");\n        return;\n    }\n    var nodeObj = _edit.clicked_node;\n    var attr = nodeObj.attributes();\n    attr.img.value = img_uuid;\n    var rootNode = _vmap.nodeByURI(window.vostan.getRootURI());\n    rootNode.modified = true;\n    if (_edit) {\n        _edit.ignore_escape(false);\n    }\n};\n\n// Edit Icon\nfunction renderIcon (node) {\n    var icon = node.attributes().img.value;\n    var editIcon = $('<input type=\"text\" class=\"inputSingleField\"' +\n                    ' id=\"edit-img\"' + 'value=\"\"/>')\n                  .css({ \"width\": 550 });\n    editIcon.val(icon);\n    //TODO: Replace edit stage size appropriate for img editing\n    var editStage = _edit.initEditDialog('Edit Icon');\n    editStage.find('.wrap').append(editIcon);\n    _edit.addSaveNode(saveIconHandler);\n    $(\"#vostanEditStage\").show();\n};\n\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        renderIcon(nodeObj); \n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1489059041389,
+    "layout": [],
+    "out": [],
+    "in": []
+  },
+  "00000000-0000-0000-0000-000000000015": {
+    "id": "00000000-0000-0000-0000-000000000015",
+    "enc": "0",
+    "domain": "",
+    "uuid": "",
+    "view": "1:485:242:124:55",
+    "title": {
+      "value": "Dimensions",
+      "view": "1:11:13:105:24"
+    },
+    "img": {
+      "value": "",
+      "view": "0:10:10:40:40"
+    },
+    "txt": {
+      "value": "",
+      "view": "0:10:50:230:40"
+    },
+    "script": "// Edit Dimensions\n// Edit functionality.\nvar _edit = null;\n\nmain();\n\nfunction updateStyle() {\n    _this.$el.find('.info').css('font-size', '15px');\n    var exp = _this.$el.find('.exp');\n    exp.html('');\n    exp.css('background-image', 'url(vendor/assets/asterisk.svg)');\n    exp.css('width', '10px');\n    exp.css('height', '10px');\n};\n\nvar resetSearchBox = function() {\n    try{\n        if ($(\"#vostanNodeToggle\")[0]) {\n            $(\"#vostanNodeToggle\").val('');\n            $('#vostanNodeToggle').autocomplete('close');\n        }\n    } catch(e) {\n        console.log(e);\n    }\n};\nfunction parseVal(i) {\n    var p = parseInt((i != NaN && '' != i) ? i : 0);\n    return p;\n};\nfunction saveHandler() {\n    var nodeObj = _edit.clicked_node;\n    var attr = nodeObj.attributes();\n    attr.top          = parseVal($('#edit-top').val());\n    attr.left         = parseVal($('#edit-left').val());\n    attr.width        = parseVal($('#edit-width').val());\n    attr.height       = parseVal($('#edit-height').val());\n    attr.title.top    = parseVal($('#edit-title-top').val());\n    attr.title.left   = parseVal($('#edit-title-left').val());\n    attr.title.width  = parseVal($('#edit-title-width').val());\n    attr.title.height = parseVal($('#edit-title-height').val());\n    attr.img.top      = parseVal($('#edit-img-top').val());\n    attr.img.left     = parseVal($('#edit-img-left').val());\n    attr.img.width    = parseVal($('#edit-img-width').val());\n    attr.img.height   = parseVal($('#edit-img-height').val());\n    attr.txt.top      = parseVal($('#edit-txt-top').val());\n    attr.txt.left     = parseVal($('#edit-txt-left').val());\n    attr.txt.width    = parseVal($('#edit-txt-width ').val());\n    attr.txt.height   = parseVal($('#edit-txt-height').val());\n    nodeObj.setTitleStyles();\n    nodeObj.setImageStyles();\n    nodeObj.setElTextAttrs();\n    //TODO: Restyle node attributes\n    nodeObj.setNodeStyles();\n    _edit.renderActions(nodeObj);\n    var rootNode = _vmap.nodeByURI(window.vostan.getRootURI());\n    rootNode.modified = true;\n    if (_edit) {\n        _edit.ignore_escape(false);\n    }\n};\n\nfunction getNodeDimensions(node) {\n    var attr = node.attributes();\n    var c = {'n': 'Node', 'ti': 'Title', 'ic': 'Icon', 'tx': 'Text',\n             't': ' Top', 'l': ' Left', 'w': ' Width', 'h':' Height'};\n    var dimensions = [\n       {node_c: '<div><label>' + c.t +\n            '<br><input id=\"edit-top\" type=\"number\" value=\"' +\n            attr.top + '\"></label><br><label>' + c.l +\n            '<br><input id=\"edit-left\" type=\"number\" value=\"' +\n            attr.left + '\"></label></div>',\n        node_s: '<div><label>' + c.w +\n                '<br><input id=\"edit-width\" type=\"number\" value=\"' +\n                attr.width + '\"></label><br><label>' + c.h +\n                '<br><input id=\"edit-height\" type=\"number\" value=\"' +\n                attr.height + '\"></label></div>',\n    }, {node_ti_c:'<div><label>' + c. t +\n             '<br><input id=\"edit-title-top\" type=\"number\" value=\"' +\n             attr.title.top + '\"></label><br><label>' + c.l +\n             '<br><input id=\"edit-title-left\" type=\"number\" value=\"' +\n             attr.title.left + '\"></label></div>',\n        node_t_s: '<div><label>' + c.w +\n                 '<br><input id=\"edit-title-width\" type=\"number\" value=\"' +\n                 attr.title.width + '\"></label><br><label>' + c.h +\n                 '<br><input id=\"edit-title-height\" type=\"number\" value=\"' +\n                 attr.title.height + '\"></label></div>',\n    }, {node_ic_c:'<div><label>' + c.t +\n             '<br><input id=\"edit-img-top\" type=\"number\" value=\"' +\n             attr.img.top + '\"></label><br><label>' + c.l +\n             '<br><input id=\"edit-img-left\" type=\"number\" value=\"' +\n             attr.img.left + '\"></label></div>',\n        node_i_s: '<div><label>' + c.w +\n                 '<br><input id=\"edit-img-width\" type=\"number\" value=\"' +\n                 attr.img.width + '\"></label><br><label>' + c.h +\n                 '<br><input id=\"edit-img-height\" type=\"number\" value=\"' +\n                 attr.img.height + '\"></label></div>',\n    }, {node_tx_c:'<div><label>' + c.t +\n             '<br><input id=\"edit-txt-top\" type=\"number\" value=\"' +\n             attr.txt.top + '\"></label><br><label>' + c.l +\n             '<br><input id=\"edit-txt-left\" type=\"number\" value=\"' +\n             attr.txt.left + '\"></label></div>',\n        node_t_s: '<div><label>' + c.w +\n                 '<br><input id=\"edit-txt-width\" type=\"number\" value=\"' +\n                 attr.txt.width + '\"></label><br><label>' + c.h +\n                 '<br><input id=\"edit-txt-height\" type=\"number\" value=\"' +\n                 attr.txt.height + '\"></label></div>',\n    }];\n    var fields = [\n        $('<fieldset id=\"node-dimentions\">' +\n                '<legend>' + c.n + '</legend></fieldset>'),\n        $('<fieldset id=\"title-dimentions\">' +\n                '<legend>' + c.ti + '</legend></fieldset>'),\n        $('<fieldset id=\"icon-dimentions\">' +\n                '<legend>' + c.ic + '</legend></fieldset>'),\n        $('<fieldset id=\"txt-dimentions\">' +\n                '<legend>' + c.tx + '</legend></fieldset>')\n    ];\n    var el = $('<div id=\"editDimensions\"></div>');\n    for (var i = 0; i < fields.length; i++) {\n        for (c in dimensions[i]) {\n            fields[i].append(dimensions[i][c]);\n        }\n        el.append(fields[i]);\n    }\n    return el;\n};\n\nfunction renderEditStage(node) {\n    //TODO: Replace edit stage size appropriate for img editing\n    var editInput = getNodeDimensions(node);\n    editInput.attr(\"id\", \"edit-dimensions\").css({ \"width\": 550 });\n    var editStage = _edit.initEditDialog('Edit Dimensions');\n    editStage.find('.wrap').append(editInput);\n    _edit.addSaveNode(saveHandler);\n    $(\"#vostanEditStage\").show();\n};\n\n\nfunction registerActionClick() {\n    _this.$el.find('.view').unbind('click').bind('click', function(e) {\n        e.stopImmediatePropagation();\n        e.stopPropagation();\n        _edit.ignore_escape(true);\n        debugger;\n        var nodeObj = _edit.clicked_node;\n        renderEditStage(nodeObj); \n    });\n};\n\nfunction main() {\n    updateStyle();\n    $(document).on('edit-node-clicked', function(e) {\n        _edit = e.edit;\n    });\n    registerActionClick();\n};",
+    "tags": [
+      "vostan::action"
+    ],
+    "created": 1442214142769,
+    "updated": 1492435222087,
+    "layout": [],
+    "out": [],
+    "in": []
+  }
+}

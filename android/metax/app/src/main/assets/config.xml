@@ -1,0 +1,202 @@
+<config>
+        <!-- Config file version -->
+        <version>1</version>
+        <!--
+                "7080 - 7500" ports for acceptance tests only
+                "7070 - 7079" ports for Leviathan peers configuration
+                "8000 - 8100" ports for experimental purposes
+        -->
+        <!--
+             specify negative number in metax_port to tell Metax that you don't
+             need to run socket server for peer connections. Peers will not be
+             able to connect to you in this case, but you can still connect to
+             others.
+        -->
+        <metax_port>8000</metax_port>
+        <web_server_port>8001</web_server_port>
+
+        <!-- Uncomment https_certificate or leave the value empty to
+             fallback to insecure http connection. Both private key
+             and certificate can be in one file, specify the path of
+             same file path in this case-->
+        <!--https_certificate>
+                <private_key>$HOME/.leviathan/server.pem</private_key>
+                <certificate>$HOME/.leviathan/server.pem</certificate>
+        </https_certificate-->
+
+        <!--
+            UUID of sitemap. It will be loaded by webserver from Metax before
+            starting webserver.
+            Using sitemap you can get files from Metax by any convenient name,
+            e.g. https://ggg.leviathan.am/index.html
+            sitemap has the following format:
+            {
+                "ggg.leviathan.am": {
+                        "/index.html": "<uuid1>",
+                        "/contacts.html": "<uuid2>"
+                }
+            }
+        -->
+        <!--sitemap>d8c957de-5eca-46cc-88be-cb31ba7d3d8b</sitemap-->
+
+        <!-- Uncomment the lines below to change the default paths.
+             WARNING: Do not uncomment and leave the path empty -->
+        <storage>
+            <path>storage</path>
+            <!-- Cache size limit should be specified only in GB -->
+            <cache_size_limit>5</cache_size_limit>
+            <!-- Files in cache older than specified time will be removed.
+                 The time should be specified in minutes. It can be fractional,
+                 e.g. 0.5 means 30 seconds. The value 0 means ignore cache age
+                 and clean up cache only by max cache size limit.-->
+            <cache_age>2</cache_age>
+            <!-- Accepts 0-5 integer values for save&sync requests:
+                "save request":
+                    [3 - 5] – all save requests will be accepted with an offer.
+                    [1 – 2] – all save requests will be accepted with an offer
+                              except save stream requests.
+                    0       – all kind of save requests will be refused.
+
+                "sync process":
+                    [0 – 4] – all uuids existing in the own storage will be
+                              synchronized appropriately from all peers.
+                    5       – all uuids which are updated starting from last
+                              seen time of each peer will be synchronized
+                              within peers. -->
+            <storage_class>4</storage_class>
+            <!-- Number of copies (including own storage) that kernel will try
+                 to make for each saved uuid. -->
+            <data_copy_count>4</data_copy_count>
+        </storage>
+        <device_key_path>keys/device</device_key_path>
+        <user_key_path>keys/user</user_key_path>
+        <device_json>device.json</device_json>
+        <user_json_info>keys/user_json_info.json</user_json_info>
+        <metax_user_info>metax_user_info.json</metax_user_info>
+        <metax_device_info>metax_device_info.json</metax_device_info>
+        <!--
+             Timer in seconds to dump user and device json files. Please
+             specify integral number, otherwise Metax will fallback to the
+             default value (5 seconds). 0 value will not start the timer.
+        -->
+        <metadata_dump_timer>5</metadata_dump_timer>
+        <router>
+                <!-- Maximum hop count of tender.
+                     Should be positive integer grater than 0. -->
+                <max_hops>3</max_hops>
+                <!-- Path of peers rating configuration file. It should contain
+                     rating information about peers by the following format:
+                     {
+                        "device_id1": {"rating": <integer>},
+                        "device_id2": {"rating": <integer>},
+                        ...
+                     }
+                -->
+                <peers_rating>peers_rating.json</peers_rating>
+                <!-- Default value of peers rating. This value is used for the
+                     peers which rating is not specified in peers rating
+                     configuration file. Should be integer from 0-100 range.
+                -->
+                <peers_default_rating>100</peers_default_rating>
+
+                <!-- This is a time in seconds for computation of tender
+                     expiration time.
+                     The expiration time is peer_response_wait_time * max_hops.
+                -->
+                <peer_response_wait_time>30</peer_response_wait_time>
+
+                <!-- Maximum total size (in bytes) of save/update requests data
+                     kernel will push to router for sending to peers at once.
+                -->
+                <router_save_queue_size>21000000</router_save_queue_size>
+
+                <!-- Maximum total size (in bytes) of data kernel will request
+                     router for sending to peers at once.
+                -->
+                <router_get_queue_size>21000000</router_get_queue_size>
+        </router>
+        <!-- true - enables save/update requests from any host,
+             false - save/update allowed only if host part of the request is
+                     "localhost" or "127.0.0.1" -->
+        <enable_non_localhost_save>false</enable_non_localhost_save>
+
+        <peers>
+                <!--
+                <peer>yerevan.leviathan.am:7070</peer>
+                <peer>metax.leviathan.am:7070</peer>
+                <peer>gyumri.leviathan.am:7070</peer>
+                <peer>vanadzor.leviathan.am:7070</peer>
+                <peer>goris.leviathan.am:7070</peer>
+                <peer>stepanakert.leviathan.am:7070</peer>
+                -->
+        </peers>
+        <!--trusted_peers_config>$HOME/.leviathan/keys/user/trusted_peers.json</trusted_peers_config-->
+    <trusted_peers>
+        <!--
+            There are the following ways to specify Peer's public key. They are
+                described in the priority order that metax is checking:
+                1. specify path to the peers public key file in the <key_path>
+                   element specified below
+                2. copy peer's public key file into the path mentioned in
+                   <user_key_path> element specified above.
+                   <user_key_path>/username_1/public.pem file
+        -->
+        <!--
+        <trusted_peer>
+            <name>username_1</name>
+            <key_path>path to peers public.pem file</key_path>
+        </trusted_peer>
+        -->
+    </trusted_peers>
+    <!-- Logging configuration start -->
+    <logging>
+        <channels>
+            <!-- Splitter channel configuration -->
+            <splitter>
+                <class>SplitterChannel</class>
+                <channels>console_channel</channels>
+                <pattern>%p %Y-%m-%d %L%H:%M:%S:%i %s: %t</pattern>
+            </splitter>
+            <!-- File channel configuration -->
+            <file_channel>
+                <class>FileChannel</class>
+                <path>leviathan.log</path>
+                <rotation>50M</rotation>
+                <archive>timestamp</archive>
+                <times>local</times>
+                <compress>true</compress>
+                <purgeAge>1weeks</purgeAge>
+            </file_channel>
+            <!-- Console channel configuration -->
+            <console_channel>
+                <class>ColorConsoleChannel</class>
+            </console_channel>
+        </channels>
+        <!-- Loggers configuration start -->
+        <loggers>
+            <metax_web_api>
+                <name>metax_web_api</name>
+                <channel>splitter</channel>
+                <!-- none - TODO, fatal - TODO, critical -TODO, error - TODO, warning - TODO,
+                     notice - TODO, information - TODO, debug - TODO, trace - TODO -->
+                <level>trace</level>
+            </metax_web_api>
+            <metax>
+                <name>metax</name>
+                <channel>splitter</channel>
+                <!-- none- TODO, fatal - TODO, critical -TODO, error - TODO, warning - TODO,
+                     notice - TODO, information - TODO, debug - TODO, trace - TODO -->
+                <level>trace</level>
+            </metax>
+            <!-- Example how to configure kernel logging
+            <kernel_logger>
+                <name>metax.kernel</name>
+                <channel>splitter</channel>
+                <level>trace</level>
+            </kernel_logger>
+            -->
+        </loggers>
+        <!-- Loggers Configuration end -->
+    </logging>
+    <!-- Logging Configuration end -->
+</config>

@@ -1,0 +1,42 @@
+
+{
+        "protocol_version": 1,
+        "username": "User name",
+        "owned_data (data created myself)": {
+                "<master uuid of encrypted data>": {
+                        "is_master": true,
+                        "aes_key": "unencrypted aes key of data",
+                        "aes_iv": "unencrypted initialization vector of aes key of data",
+                        "copy_count": 3,
+                        "shares (discuss whether this is needed)": [
+                                "<friend's public key>": {
+                                        "aes_key": "aes key encrypted with friend's public key",
+                                        "aes_iv": "aes initialization vector  encrypted with friend's public key"
+                                }
+                        ],
+                        "owned": true
+                },
+                "<piece uuid of encrypted data>": {
+                        "is_master": false,
+                        "copy_count": 3,
+                        "owned": true
+                },
+                "<master uuid of unencrypted data>": {
+                        "is_master": true,
+                        "aes_key": "",
+                        "aes_iv": "",
+                        "copy_count": 3,
+                        "owned": true
+                },
+                "<uuid of encrypted data shared with me>": {
+                        "aes_key": "unencrypted aes key of data",
+                        "aes_iv": "unencrypted initialization vector of  aes key of data",
+                        "owned": false
+                }
+        },
+        "foreign_data (data created by other but stored by me)": {
+                "<uuid of data>": {
+                        "copy_number": 1
+                }
+        }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- 
+vim: tabstop=8:shiftwidth=8:expandtab 
+-->
+<html>
+        <head>
+                <meta charset="utf-8"/>
+                <title>Metax File Transferring System</title>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </head>
+        <body>
+                <h1>Welcome to Metax File Transfer</h1>
+                <p><input type="checkbox" id='encrypt' name="encrypt"
+                        value="encrypt" checked><span id="encryptInfo" >The file
+                        will be <span
+                        style='color:green'>encrypted</span></span><br></p>
+                <p> Step 1: Select file to upload: <input id='upload' type="file"/> </p>
+                <br/>
+                <p<label id="status"> </label> </p>
+                
+                <script>
+
+                var link = window.location.href.split('=')[1];
+                var down_page_uuid = '51ab3910-b0b1-4040-a420-fa0de085de2f';
+                var data_save_url = "/db/save/data";
+                var json_save_url = "/db/save/node";
+                var data_get_url = "/db/get?id=";
+
+                function getEncryptionLevel() {
+                        // encryption checkbox is commented, so no any check
+                        //here, just setting enc=1
+                        return document.getElementById('encrypt').checked ? 1 : 0;
+                        //return 1;
+                }
+
+                function saveFileToMetax(file, fileinfo){
+                        var currTime = (new Date()).getTime();
+                        $.ajax({
+                                type: 'post',
+                                url: data_save_url + "?enc=" + getEncryptionLevel(),
+                                headers: {"Metax-Content-Type": fileinfo.type},
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                data: file,
+                                success: function(data) {
+                                        if (data) {
+                                                var currTime1 = (new Date()).getTime();
+                                                var uploadTime =(currTime1 -
+                                                        currTime)/1000;
+
+                                                document.getElementById('status').innerHTML
+                                                        += " <span style='color:green'>DONE</span> in " + uploadTime + " seconds!";
+                                                createInfoObject(fileinfo, data.uuid);
+                                        }
+                                },
+                                error: function(xhr) {
+                                        console.log(xhr);
+                                        document.getElementById('status').innerHTML
+                                                += " <span style='color:red'>Upload failed.</span> Please try again.";
+                                }
+                        });
+                }
+
+                function saveAndGenerateLink(info) {
+                        var data = JSON.stringify(info);
+                        $.ajax({
+                                type : 'POST',
+                                url : json_save_url + "?enc=" + getEncryptionLevel(),
+                                headers: {"Metax-Content-Type": "application/json"},
+                                data : data,
+                                success : function(data) {
+                                        if(data) {
+                                                var file_URL =
+                                                        document.location.origin
+                                                        + data_get_url +
+                                                        down_page_uuid + "#" +
+                                                        data.uuid
+                                                var file_URL_status = 
+                                                        "<br/><p>"+
+                                                        "Step 3: save this URL for accessing the file in the future " +
+                                                        "<br/><a href = " + file_URL + " target='_blank'>"+ file_URL +
+                                                        "</a></p>";
+                                                document.getElementById('status').innerHTML
+                                                        += file_URL_status;
+                                        }
+                                },
+                                error: function(xhr) {
+                                        console.log("Error in Leviathan Save",xhr);
+                                        document.getElementById('status').innerHTML
+                                                += "Step 3: <span style='color:red'>URL cannot be generated.</span> Please try again";
+                                },
+                        });
+                };
+
+                function createInfoObject(fileinfo, uuid) {
+                        var info_object = {
+                                app: {
+                                            "uuid": link,
+                                            "name": "Metax File Transfer",
+                                            "version": "0.1"
+                                },
+                                data: {
+                                              "file_uuid": uuid,
+                                              "file_name": fileinfo.name,
+                                              "file_mime": fileinfo.type,
+                                              "file_size": fileinfo.size,
+                                              "file_hash": typeof file_hash !=
+                                                      'undefined' ? file_hash :
+                                                      'Not calculated.'
+                                }
+                        };
+                        saveAndGenerateLink(info_object);
+                }
+
+                document.getElementById('upload').onchange = function() {
+                        formdata = new FormData();
+                        fileinfo = {};
+                        formdata.append(1, this.files[0]);
+                        fileinfo.name = this.files[0].name;
+                        fileinfo.size = this.files[0].size;
+                        fileinfo.type = this.files[0].type;
+                        fileinfo.lastmodified = this.files[0].lastModified;
+                        fileinfo.path = this.files[0];
+                        var file = this.files[0];
+                        document.getElementById('status').innerHTML = "Step 2: uploading, please wait...";
+                        
+                        saveFileToMetax(formdata, fileinfo);
+  
+                };
+
+                $("#encrypt").change(function() {
+                        if(this.checked) {
+                                $("#encryptInfo").html("The file will be <span style='color:green'>encrypted</span>")        
+                        } else {
+                                
+                                $("#encryptInfo").html("The file will <span style='color:red'>not be encrypted</span>")        
+                        }
+                });
+
+                </script>
+        </body>
+</html>

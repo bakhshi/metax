@@ -1,0 +1,74 @@
+
+1st approach of authorization
+- Save request stores the user public key with each piece of data
+- get request
+        - announce tender and choose winner
+        - send to the winner the uuid string of the piece encrypted with the user
+          private key
+        - the peer who stored the uuid tries to decrypt the encrypted uuid
+          string with the public key attached to uuid data
+        - in case of success sends the date
+- update request
+        - announce update request
+        - collect all responses
+        - send the new data and the uuid string encrypted with the user
+          private key
+        - the peer who stores the uuid tries to decrypt the uuid string with
+          the public key attached to the uuid
+        - in case of success replaces the uuid with the received one
+- group sharing will be solved by attaching multiple public keys to the each
+  uuid
+- with each public key attached to a uuid might be stored a flag specifying
+  whether the permission for the public key is read-only.
+- or with each uuid it might worth to store uuid_md file, where all metadata
+  concering the uuid will be stored, e.g. public key of the users with
+  read or write permissions, expiration date, last paid date, last modified
+  time, etc.
+- Note 1, it is not possible to provide the read/write permission of the file by
+  share request in this solution. There will be needed update of the whole
+  file.
+- Note 2, as update request generates new uuids for the pieces, so practically
+  there will be no update request for pieces. The update request will be only
+  for shared object (only when changing encryption) and master uuid. Seems
+  that there will be no need to keep write permissions for the pieces, but
+  from the other hand, there might be delete request, which will be also
+  applied to the pieces, so anyway the public keys for the permissions should
+  be kept also for the pieces.
+
+
+2nd approach of authorization
+- Save request creates a folder in storage with the hash of public key of the
+  data owner (received with the tender or data)
+- stores the public key in public.pem file under the new folder
+- get and update requests are working similar to approach 1 with the
+  difference that the public key is obtained from the special file in the
+  corresponding folder rather than from the data itself
+- during the get request, in this case the uuid look-up must be done in
+  multiple folders
+question
+- how implement group sharing???
+
+Private vs. Public  encryption
+Currently the encryption of save/update requests are controlled by enc=0/1
+parameter.
+- when enc=0 then the file is not encrypted at all. The aes_key/aes_iv
+  fields in shared object are empty.
+- when enc=1 then the file is its AES key. The key and initialization vector
+  are being encrypted with the user public and are stored in aes_key/aes_iv of
+  fields shared object
+
+There is a suggestion to change the algorithm as follows.
+- enc=1 case works as the current implementation
+- enc=0 case is changed to the following algorithm
+        - all the data is encrypted with its AES key
+        - AES key is encrypted with the user private key
+- during get requests the data will be decrypted by the user public key.  This
+  approach can be applied to fix the problem, we want to prevent save/update
+  request forbidding from non-localhost. The private key can be moved out from
+  the host, and not only the non-localhost, but even localhost will not be
+  able to save more data or update the existing one. If needed to save more
+  data or perform update, the owner of the host will temporarily bring the
+  user private key back to the host and will perform needed save/update. After
+  the private key will be moved out from the host again.
+
+

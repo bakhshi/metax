@@ -1,0 +1,173 @@
+digraph {
+    subgraph cluster_0 {
+        label="Alvar 172.17.7.67";
+        intranet_alvar_7070;
+        test_alvar_7080;
+        test_alvar_7080 -> "localhost:7070";
+        new_test_alvar_8002
+    }
+
+    subgraph cluster_1 {
+        label="Shaghik 172.17.7.66";
+        intranet_shaghik_7070;
+        test_shaghik_7080;
+        shaghik_8000;
+    }
+
+    subgraph cluster_2 {
+        label="metax leviathan 172.17.7.44";
+        metax_leviathan_am_7071;
+
+        intranet_metax_leviathan_am_7070;
+        test_metax_leviathan_am_7080;
+        realschool_metax_leviathan_am_7074;
+        website_metax_leviathan_am_7776;
+        nairi_metax_leviathan_am_7078;
+    }
+
+    subgraph cluster_3 {
+        label="yerevan leviathan 172.17.16.17";
+        intranet_yerevan_leviathan_am_7070;
+        test_yerevan_leviathan_am_7080;
+        realschool_yerevan_leviathan_am_7074;
+        website_yerevan_leviathan_am_7776;
+
+    }
+
+    subgraph cluster_4 {
+        label="gyumri leviathan";
+        intranet_gyumri_leviathan_am_7070;
+        test_gyumri_leviathan_am_7080;
+        realschool_gyumri_leviathan_am_7074;
+        website_gyumri_leviathan_am_7776;
+    }
+
+    subgraph cluster_5 {
+        label="vanadzor leviathan";
+        intranet_vanadzor_leviathan_am_7070;
+        test_vanadzor_leviathan_am_7080;
+        realschool_vanadzor_leviathan_am_7074;
+        website_vanadzor_leviathan_am_7776;
+    }
+
+    subgraph cluster_6 {
+        label="goris leviathan";
+        intranet_goris_leviathan_am_7070;
+        realschool_goris_leviathan_am_7074;
+        website_goris_leviathan_am_7776;
+        test_goris_leviathan_am_7080;
+    }
+
+    subgraph cluster_7 {
+        label="stepanakert leviathan";
+        intranet_stepanakert_leviathan_am_7070;
+        test_stepanakert_leviathan_am_7080;
+        realschool_stepanakert_leviathan_am_7074;
+        website_stepanakert_leviathan_am_7776;
+    }
+
+    subgraph cluster_8 {
+        label="arpa 172.17.7.68";
+        intranet_arpa_7070;
+        test_arpa_7080;
+    }
+
+    subgraph cluster_9 {
+        label=" LVT-Box-1 172.17.7.64 disabled";
+        leviathan_box_1;
+    }
+
+    subgraph cluster_10 {
+        label=" LVT-Box-2 172.17.7.65 disabled";
+        leviathan_box_2;
+    }
+
+    subgraph cluster_11 {
+        label="Lvt_Ubuntu12x64 172.17.7.36";
+        intranet_lvt_ubuntu_12_64;
+    }
+
+    subgraph cluster_12 {
+        label=" LVT-Ubuntu14.04x32 172.17.7.37";
+        intranet_lvt_ubuntu_14_32;
+    }
+
+    subgraph cluster_13 {
+        label=" LVT-Ubuntu14.04x64 172.17.7.34";
+        intranet_lvt_ubuntu_14_64;
+    }
+
+    subgraph cluster_14 {
+        label=" LVT-Ubuntu16.04x64 172.17.7.39";
+        intranet_lvt_ubuntu_16_64;
+    }
+
+    intranet_alvar_7070 -> website_metax_leviathan_am_7776 [label="co"];
+    intranet_alvar_7070 -> intranet_shaghik_7070;
+    intranet_alvar_7070 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    test_alvar_7080 -> test_yerevan_leviathan_am_7080 [label="co"];
+
+
+    intranet_shaghik_7070 -> metax_leviathan_am_7071 [label="co"];
+    test_shaghik_7080 -> test_metax_leviathan_am_7080 [label="co"];
+    shaghik_8000 -> intranet_metax_leviathan_am_7070 [label="co"];
+    shaghik_8000 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    shaghik_8000 -> intranet_gyumri_leviathan_am_7070 [label="co"];
+    shaghik_8000 -> intranet_vanadzor_leviathan_am_7070 [label="co"];
+    shaghik_8000 -> intranet_goris_leviathan_am_7070 [label="co"];
+    shaghik_8000 -> intranet_stepanakert_leviathan_am_7070 [label="co"];
+
+    intranet_lvt_ubuntu_12_64 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    intranet_lvt_ubuntu_14_32 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    intranet_lvt_ubuntu_14_64 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    intranet_lvt_ubuntu_16_64 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+
+    intranet_stepanakert_leviathan_am_7070 -> intranet_goris_leviathan_am_7070 [label="co"];
+    realschool_stepanakert_leviathan_am_7074 -> realschool_goris_leviathan_am_7074 [label="co"];
+    website_stepanakert_leviathan_am_7776 -> website_goris_leviathan_am_7776 [label="co"];
+
+    intranet_goris_leviathan_am_7070 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    test_goris_leviathan_am_7080 -> test_yerevan_leviathan_am_7080 [label="co"];
+    realschool_goris_leviathan_am_7074 -> realschool_yerevan_leviathan_am_7074 [label="co"];
+    website_goris_leviathan_am_7776 -> website_yerevan_leviathan_am_7776 [label="co"];
+
+    intranet_vanadzor_leviathan_am_7070 -> intranet_gyumri_leviathan_am_7070 [label="co"];
+    realschool_vanadzor_leviathan_am_7074 -> realschool_gyumri_leviathan_am_7074 [label="co"];
+    website_vanadzor_leviathan_am_7776 -> website_gyumri_leviathan_am_7776 [label="co"];
+    test_vanadzor_leviathan_am_7080 -> test_gyumri_leviathan_am_7080 [label="co"];
+
+
+    website_metax_leviathan_am_7776 -> yerevan_leviathan_am_7776 [label="co"];
+    website_metax_leviathan_am_7776 -> intranet_yerevan_leviathan_am_7070 [label="co"];
+    website_metax_leviathan_am_7776 -> intranet_gyumri_leviathan_am_7070 [label="co"];
+    website_metax_leviathan_am_7776 -> intranet_vanadzor_leviathan_am_7070 [label="co"];
+    website_metax_leviathan_am_7776 -> intranet_goris_leviathan_am_7070 [label="co"];
+    website_metax_leviathan_am_7776 -> intranet_stepanakert_leviathan_am_7070 [label="co"];
+    website_metax_leviathan_am_7776 -> website_gyumri_leviathan_am_7776 [label="co"];
+    website_metax_leviathan_am_7776 -> website_vanadzor_leviathan_am_7776 [label="co"];
+    website_metax_leviathan_am_7776 -> website_goris_leviathan_am_7776 [label="co"];
+    website_metax_leviathan_am_7776 -> website_stepanakert_leviathan_am_7776 [label="co"];
+    website_metax_leviathan_am_7776 -> realschool_gyumri_leviathan_am_7074 [label="co"];
+    website_metax_leviathan_am_7776 -> realschool_yerevan_leviathan_am_7074 [label="co"];
+    website_metax_leviathan_am_7776 -> realschool_vanadzor_leviathan_am_7074 [label="co"];
+    website_metax_leviathan_am_7776 -> realschool_goris_leviathan_am_7074 [label="co"];
+    website_metax_leviathan_am_7776 -> realschool_stepanakert_leviathan_am_7074 [label="co"];
+    realschool_metax_leviathan_am_7074 -> realschool_yerevan_leviathan_am_7074 [label="co"];
+
+    test_metax_leviathan_am_7080 -> test_yerevan_leviathan_am_7080 [label="co"];
+    test_metax_leviathan_am_7080 -> test_gyumri_leviathan_am_7080 [label="co"];
+    test_metax_leviathan_am_7080 -> test_vanadzor_leviathan_am_7080 [label="co"];
+    test_metax_leviathan_am_7080 -> test_goris_leviathan_am_7080 [label="co"];
+    test_metax_leviathan_am_7080 -> test_stepanakert_leviathan_am_7080 [label="co"];
+    test_yerevan_leviathan_am_7080 -> test_gyumri_leviathan_am_7080 [label="co"];
+    test_yerevan_leviathan_am_7080 -> test_vanadzor_leviathan_am_7080 [label="co"];
+    realschool_yerevan_leviathan_am_7074 -> realschool_gyumri_leviathan_am_7074 [label="co"];
+    realschool_yerevan_leviathan_am_7074 -> realschool_vanadzor_leviathan_am_7074 [label="co"];
+    website_yerevan_leviathan_am_7776 -> website_gyumri_leviathan_am_7776 [label="co"];
+    website_yerevan_leviathan_am_7776 -> website_vanadzor_leviathan_am_7776 [label="co"];
+
+
+}
+
+
+
